@@ -25,7 +25,6 @@ class Kernel extends BaseKernel
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
-        // PHP equivalent of config/packages/framework.yaml
         $c->loadFromExtension('framework', array(
             'secret' => 'S0ME_SECRET'
         ));
