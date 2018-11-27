@@ -35,4 +35,12 @@ class Kernel extends BaseKernel
     {
         $routes->import(__DIR__, '/', 'annotation');
     }
+
+    public function getCacheDir() {
+        return __DIR__.'/../cache';
+    }
+
+    public function getLogDir() {
+        return __DIR__.'/../log';
+    }
 }
