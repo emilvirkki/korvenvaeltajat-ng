@@ -12,8 +12,13 @@ class AppController extends AbstractController
      */
     public function index()
     {
-        return $this->render('index.html.twig', array(
+        return $this->renderTemplate('index', array(
           'name' => 'world'
         ));
+    }
+
+    private function renderTemplate($name, $vars) {
+        $vars = array_merge($vars, array('template' => $name));
+        return $this->render("$name.html.twig", $vars);
     }
 }
