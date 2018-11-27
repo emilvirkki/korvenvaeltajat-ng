@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +12,8 @@ class AppController extends AbstractController
      */
     public function index()
     {
-        return new Response("Hello world!");
+        return $this->render('index.html.twig', array(
+          'name' => 'world'
+        ));
     }
 }

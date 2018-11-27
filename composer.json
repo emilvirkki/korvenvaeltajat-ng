@@ -6,7 +6,8 @@
         "symfony/routing": "^4.1",
         "symfony/dependency-injection": "^4.1",
         "symfony/framework-bundle": "^4.1",
-        "doctrine/annotations": "^1.6"
+        "doctrine/annotations": "^1.6",
+        "symfony/twig-bundle": "^4.1"
     },
     "autoload": {
         "psr-4": {
