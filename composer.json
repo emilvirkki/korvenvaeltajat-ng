@@ -18,6 +18,8 @@
         "process-timeout": 0
     },
     "scripts": {
-        "run": "php -S localhost:8080 -t public"
+        "run": "php -S localhost:8080 -t public",
+        "sass-compile": "sass --style compressed public/scss/screen.scss public/styles/screen.css",
+        "sass-watch": "sass --style compressed --watch public/scss:public/styles"
     }
 }
