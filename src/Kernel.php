@@ -41,6 +41,6 @@ class Kernel extends BaseKernel
     }
 
     public function getLogDir() {
-        return __DIR__.'/../log';
+        return __DIR__.'/../logs';
     }
 }
