@@ -36,6 +36,7 @@ class Kernel extends BaseKernel
             'delivery' => array(
                 'space' => getenv('CONTENTFUL_SPACE'),
                 'token' => getenv('CONTENTFUL_TOKEN'),
+                'environment' => getenv('CONTENTFUL_ENV'),
             )
         ));
 
