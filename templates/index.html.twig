@@ -5,17 +5,11 @@
 {% block content %}
 	<h2>Artikkelit</h2>
 	{% for article in articles %}
-		<h3>{{ article.title }}</h3>
+
+		{% set link = path('article', { slug: article.slug }) %}
+
+		<h3><a href="{{ link }}">{{ article.title }}</a></h3>
 		{{ article.content|markdown|striptags|truncate(140, true) }}
 
-		{% if article.attachments %}
-			<ul>
-			{% for attachment in article.attachments %}
-				<li>
-					<a href="{{ attachment.file.url }}" type="{{ attachment.file.contentType }}">{{ attachment.title }}</a>
-				</li>
-			{% endfor %}
-			</ul>
-		{% endif %}
 	{% endfor %}
 {% endblock %}
