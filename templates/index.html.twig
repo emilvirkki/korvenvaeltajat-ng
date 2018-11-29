@@ -3,5 +3,8 @@
 {% block title %}Etusivu{% endblock %}
 
 {% block content %}
-	Hello {{ name }}!
+	<h2>Artikkelit</h2>
+	{% for article in articles %}
+		<h3>{{ article.title }}</h3>
+	{% endfor %}
 {% endblock %}

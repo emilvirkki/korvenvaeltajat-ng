@@ -21,13 +21,21 @@ class Kernel extends BaseKernel
         return array(
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
+            new \Contentful\ContentfulBundle\ContentfulBundle(),
         );
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         $c->loadFromExtension('framework', array(
-            'secret' => 'S0ME_SECRET'
+            'secret' => 'S0ME_SECRET',
+        ));
+
+        $c->loadFromExtension('contentful', array(
+            'delivery' => array(
+                'space' => getenv('CONTENTFUL_SPACE'),
+                'token' => getenv('CONTENTFUL_TOKEN'),
+            )
         ));
     }
 
