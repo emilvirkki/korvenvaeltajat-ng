@@ -7,5 +7,15 @@
 	{% for article in articles %}
 		<h3>{{ article.title }}</h3>
 		{{ article.content|markdown }}
+
+		{% if article.attachments %}
+			<ul>
+			{% for attachment in article.attachments %}
+				<li>
+					<a href="{{ attachment.file.url }}" type="{{ attachment.file.contentType }}">{{ attachment.title }}</a>
+				</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
 	{% endfor %}
 {% endblock %}
