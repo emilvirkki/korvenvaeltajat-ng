@@ -4,7 +4,7 @@ namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use \Contentful\Delivery\Query;
+use Contentful\Delivery\Query;
 
 class AppController extends AbstractController
 {
@@ -48,7 +48,8 @@ class AppController extends AbstractController
         return $client->getEntries($query);
     }
 
-    private function getEntry($query) {
+    private function getEntry($query)
+    {
         $query->setLimit(1);
         $entries = $this->getEntries($query);
 
