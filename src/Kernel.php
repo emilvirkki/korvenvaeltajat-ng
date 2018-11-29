@@ -38,6 +38,10 @@ class Kernel extends BaseKernel
                 'token' => getenv('CONTENTFUL_TOKEN'),
             )
         ));
+
+        $c->register('twig.extension.text', \Twig\Extensions\TextExtension::class)
+            ->setPublic(false)
+            ->addTag('twig.extension');
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
