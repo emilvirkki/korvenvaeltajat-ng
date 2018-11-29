@@ -9,7 +9,8 @@
         "doctrine/annotations": "^1.6",
         "symfony/twig-bundle": "^4.1",
         "symfony/dotenv": "^4.1",
-        "contentful/contentful-bundle": "^3.0"
+        "contentful/contentful-bundle": "^3.0",
+        "knplabs/knp-markdown-bundle": "^1.7"
     },
     "autoload": {
         "psr-4": {

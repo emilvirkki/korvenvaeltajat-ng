@@ -22,6 +22,7 @@ class Kernel extends BaseKernel
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \Contentful\ContentfulBundle\ContentfulBundle(),
+            new \Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
         );
     }
 

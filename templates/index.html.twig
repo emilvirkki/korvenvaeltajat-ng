@@ -6,5 +6,6 @@
 	<h2>Artikkelit</h2>
 	{% for article in articles %}
 		<h3>{{ article.title }}</h3>
+		{{ article.content|markdown }}
 	{% endfor %}
 {% endblock %}
