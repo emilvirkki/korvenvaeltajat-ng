@@ -5,6 +5,12 @@
 {% block content %}
 	<h1>{{ article.title }}</h1>
 
+	{% if article.authorName %}
+		{{ article.authorName }} {{ article.getSystemProperties.getCreatedAt|date('d.m.Y') }}
+	{% else %}
+		{{ article.getSystemProperties.getCreatedAt|date('d.m.Y') }}
+	{% endif %}
+
 	{{ article.content|markdown }}
 
 	{% if article.attachments %}
