@@ -39,7 +39,7 @@ class AppController extends AbstractController
     private function query($content_type)
     {
         $query = new Query();
-        return $query->setContentType('article');
+        return $query->setContentType($content_type);
     }
 
     private function getEntries($query)
