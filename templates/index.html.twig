@@ -3,6 +3,9 @@
 {% block title %}Etusivu{% endblock %}
 
 {% block content %}
+	<h1>{{ snippets.frontPageSlogan }}</h1>
+	{{ snippets.frontPageIntro|markdown }}
+
 	<h2>Artikkelit</h2>
 	{% for article in articles %}
 		{% include 'partials/article.html.twig' %}

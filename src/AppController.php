@@ -89,6 +89,23 @@ class AppController extends AbstractController
         ));
     }
 
+    private function getSnippets()
+    {
+        $entries_short = $this->getEntries($this->query('snippetShort'));
+        $entries_long = $this->getEntries($this->query('snippetLong'));
+        $entries = array_merge(
+            iterator_to_array($entries_short),
+            iterator_to_array($entries_long)
+        );
+
+        $snippets = array();
+        foreach ($entries as $entry) {
+            $id = $entry['id'];
+            $snippets[$id] = $entry['content'];
+        }
+        return $snippets;
+    }
+
     private function query($content_type)
     {
         $query = new Query();
@@ -115,7 +132,10 @@ class AppController extends AbstractController
 
     private function renderTemplate($name, $vars)
     {
-        $vars = array_merge($vars, array('template' => $name));
+        $vars = array_merge($vars, array(
+            'template' => $name,
+            'snippets' => $this->getSnippets(),
+        ));
         return $this->render("$name.html.twig", $vars);
     }
 }
