@@ -113,6 +113,14 @@ class AppController extends AbstractController
         return $this->renderTemplate('contact');
     }
 
+    /**
+     * @Route("/liity", name="join")
+     */
+    public function join()
+    {
+        return $this->renderTemplate('join');
+    }
+
     private function getSnippets()
     {
         $entries_short = $this->getEntries($this->query('snippetShort'));
