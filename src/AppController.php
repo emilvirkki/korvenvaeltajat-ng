@@ -89,6 +89,14 @@ class AppController extends AbstractController
         ));
     }
 
+    /**
+     * @Route("/mika-partio", name="about_scouting")
+     */
+    public function aboutScouting()
+    {
+        return $this->renderTemplate('about_scouting');
+    }
+
     private function getSnippets()
     {
         $entries_short = $this->getEntries($this->query('snippetShort'));
@@ -130,7 +138,7 @@ class AppController extends AbstractController
         return $entries[0];
     }
 
-    private function renderTemplate($name, $vars)
+    private function renderTemplate($name, $vars = array())
     {
         $vars = array_merge($vars, array(
             'template' => $name,
