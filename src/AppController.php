@@ -105,6 +105,14 @@ class AppController extends AbstractController
         return $this->renderTemplate('troop');
     }
 
+    /**
+     * @Route("/yhteystiedot", name="contact")
+     */
+    public function contact()
+    {
+        return $this->renderTemplate('contact');
+    }
+
     private function getSnippets()
     {
         $entries_short = $this->getEntries($this->query('snippetShort'));
