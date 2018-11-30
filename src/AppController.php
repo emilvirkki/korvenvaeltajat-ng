@@ -23,6 +23,20 @@ class AppController extends AbstractController
     }
 
     /**
+     * @Route("/ajankohtaista", name="articles")
+     */
+    public function articles()
+    {
+        $article = $this->getEntries(
+            $this->query('article')
+        );
+
+        return $this->renderTemplate('articles', array(
+          'articles' => $article,
+        ));
+    }
+
+    /**
      * @Route("/ajankohtaista/{slug}", name="article")
      */
     public function showArticle($slug)

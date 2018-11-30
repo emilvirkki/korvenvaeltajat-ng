@@ -1,0 +1,5 @@
+{% set link = path('article', { slug: article.slug }) %}
+
+{{ article.getSystemProperties.getCreatedAt|date('d.m.Y') }}
+<h3><a href="{{ link }}">{{ article.title }}</a></h3>
+{{ article.content|markdown|striptags|truncate(140, true) }}

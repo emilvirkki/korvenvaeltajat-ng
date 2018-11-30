@@ -1,13 +1,10 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Etusivu{% endblock %}
+{% block title %}Ajankohtaista{% endblock %}
 
 {% block content %}
-	<h2>Artikkelit</h2>
+	<h1>Ajankohtaista</h1>
 	{% for article in articles %}
 		{% include 'partials/article.html.twig' %}
 	{% endfor %}
-	<div>
-		<a href="{{ path('articles') }}">Näytä lisää</a>
-	</div>
 {% endblock %}
