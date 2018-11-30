@@ -13,12 +13,20 @@ class AppController extends AbstractController
      */
     public function home()
     {
+        $events = $this->getEntries(
+            $this->query('event')
+                ->setLimit(7)
+                ->orderBy('fields.datetimeStart')
+                ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
+        );
+
         $articles = $this->getEntries(
             $this->query('article')->setLimit(3)
         );
 
         return $this->renderTemplate('index', array(
           'articles' => $articles,
+          'events' => $events,
         ));
     }
 
@@ -27,6 +35,7 @@ class AppController extends AbstractController
      */
     public function articles()
     {
+        //TODO Add paging
         $article = $this->getEntries(
             $this->query('article')
         );
@@ -39,7 +48,7 @@ class AppController extends AbstractController
     /**
      * @Route("/ajankohtaista/{slug}", name="article")
      */
-    public function showArticle($slug)
+    public function article($slug)
     {
         $article = $this->getEntry(
             $this->query('article')->where('fields.slug', $slug)
@@ -47,6 +56,20 @@ class AppController extends AbstractController
 
         return $this->renderTemplate('article', array(
           'article' => $article,
+        ));
+    }
+
+    /**
+     * @Route("/tapahtumat/{slug}", name="event")
+     */
+    public function event($slug)
+    {
+        $event = $this->getEntry(
+            $this->query('event')->where('fields.slug', $slug)
+        );
+
+        return $this->renderTemplate('event', array(
+          'event' => $event,
         ));
     }
 

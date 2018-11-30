@@ -1,0 +1,9 @@
+{% if attachments %}
+	<ul>
+	{% for attachment in attachments %}
+		<li>
+			<a href="{{ attachment.file.url }}" type="{{ attachment.file.contentType }}">{{ attachment.title }}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}
