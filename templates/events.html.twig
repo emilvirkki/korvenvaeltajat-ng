@@ -1,17 +1,10 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Etusivu{% endblock %}
+{% block title %}Tapahtumat{% endblock %}
 
 {% block content %}
-	<h2>Artikkelit</h2>
-	{% for article in articles %}
-		{% include 'partials/article.html.twig' %}
-	{% endfor %}
-	<div>
-		<a href="{{ path('articles') }}">Näytä lisää</a>
-	</div>
-
-	<h2>Tapahtumat</h2>
+	<h1>Tapahtumat</h1>
+	{# TODO Check what kind of styling we want and a) make a partial shared with homepage or 2) change the code below #}
 	<ul>
 	{% for event in events %}
 		<li>
@@ -31,9 +24,5 @@
 		</li>
 	{% endfor %}
 	</ul>
-
-	<div>
-		<a href="{{ path('events') }}">Kaikki tapahtumat</a>
-	</div>
 
 {% endblock %}

@@ -60,6 +60,22 @@ class AppController extends AbstractController
     }
 
     /**
+     * @Route("/tapahtumat", name="events")
+     */
+    public function events()
+    {
+        $events = $this->getEntries(
+            $this->query('event')
+                ->orderBy('fields.datetimeStart')
+                ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
+        );
+
+        return $this->renderTemplate('events', array(
+          'events' => $events,
+        ));
+    }
+
+    /**
      * @Route("/tapahtumat/{slug}", name="event")
      */
     public function event($slug)
