@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Contentful\Delivery\Query;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
+
 class AppController extends AbstractController
 {
     /**
@@ -119,6 +123,18 @@ class AppController extends AbstractController
     public function join()
     {
         return $this->renderTemplate('join');
+    }
+
+    public function error(
+        Request $request,
+        FlattenException $exception,
+        DebugLoggerInterface $logger = null
+    ) {
+        if ($exception->getStatusCode() === 404) {
+            return $this->renderTemplate('error404');
+        }
+        // Error might be from Contentful -> we can only render static stuff
+        return $this->render('error.html.twig');
     }
 
     private function getSnippets()

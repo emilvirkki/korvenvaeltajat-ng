@@ -40,6 +40,14 @@ class Kernel extends BaseKernel
             )
         ));
 
+        // Use custom controller action to show errors, since we still need
+        // to load e.g. snippets on 404 pages (prod only, in dev we want to see error info)
+        if (!$this->isDebug()) {
+            $c->loadFromExtension('twig', array(
+                'exception_controller' => 'App\AppController::error',
+            ));
+        }
+
         $c->register('twig.extension.text', \Twig\Extensions\TextExtension::class)
             ->setPublic(false)
             ->addTag('twig.extension');
