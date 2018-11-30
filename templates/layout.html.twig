@@ -7,6 +7,29 @@
 	</head>
 	<body>
 		<h1><a href="{{ path('home') }}">Korven Vaeltajat</a></h1>
+		{%
+			set pages = [
+				{
+					'title': 'Etusivu',
+					'route': 'home'
+				},
+				{
+					'title': 'Ajankohtaista',
+					'route': 'articles'
+				}
+			]
+		%}
+
+		<ul>
+		{% for page in pages %}
+        	<li><a href="{{ path(page.route) }}"
+				{% if (page.route == template) %}
+					class="active"
+				{% endif %}
+        	>{{ page.title }}</a></li>
+		{% endfor %}
+		</ul>
+
 		<!-- template: {{ template }} -->
 		{% block content %}{% endblock %}
 	</body>

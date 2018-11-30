@@ -24,7 +24,7 @@ class AppController extends AbstractController
             $this->query('article')->setLimit(3)
         );
 
-        return $this->renderTemplate('index', array(
+        return $this->renderTemplate('home', array(
           'articles' => $articles,
           'events' => $events,
         ));
