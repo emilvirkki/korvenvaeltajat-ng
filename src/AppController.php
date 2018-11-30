@@ -97,6 +97,14 @@ class AppController extends AbstractController
         return $this->renderTemplate('about_scouting');
     }
 
+    /**
+     * @Route("/lippukunta", name="troop")
+     */
+    public function troop()
+    {
+        return $this->renderTemplate('troop');
+    }
+
     private function getSnippets()
     {
         $entries_short = $this->getEntries($this->query('snippetShort'));
