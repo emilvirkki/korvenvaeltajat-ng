@@ -6,9 +6,9 @@
 	<h1>{{ article.title }}</h1>
 
 	{% if article.authorName %}
-		{{ article.authorName }} {{ article.getSystemProperties.getCreatedAt|date('d.m.Y') }}
+		{{ article.authorName }} {{ article.created|date('d.m.Y') }}
 	{% else %}
-		{{ article.getSystemProperties.getCreatedAt|date('d.m.Y') }}
+		{{ article.created|date('d.m.Y') }}
 	{% endif %}
 
 	{{ article.content|markdown }}

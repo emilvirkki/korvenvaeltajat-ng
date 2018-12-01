@@ -141,10 +141,7 @@ class AppController extends AbstractController
     {
         $entries_short = $this->getEntries($this->query('snippetShort'));
         $entries_long = $this->getEntries($this->query('snippetLong'));
-        $entries = array_merge(
-            iterator_to_array($entries_short),
-            iterator_to_array($entries_long)
-        );
+        $entries = array_merge($entries_short, $entries_long);
 
         $snippets = array();
         foreach ($entries as $entry) {
@@ -163,7 +160,9 @@ class AppController extends AbstractController
     private function getEntries($query)
     {
         $client = $this->get('contentful.delivery');
-        return $client->getEntries($query);
+        return $this->entriesToArray(
+            $client->getEntries($query)
+        );
     }
 
     private function getEntry($query)
@@ -185,5 +184,25 @@ class AppController extends AbstractController
             'snippets' => $this->getSnippets(),
         ));
         return $this->render("$name.html.twig", $vars);
+    }
+
+    private function entriesToArray($raw_entries)
+    {
+        $entries = array();
+        foreach ($raw_entries as $raw_entry) {
+            $entries[] = $this->entryToArray($raw_entry);
+        }
+        return $entries;
+    }
+
+    private function entryToArray($raw_entry)
+    {
+        $fields = $raw_entry->getContentType()->getFields();
+        $entry = array();
+        foreach ($fields as $id => $field) {
+            $entry[$id] = $raw_entry[$id];
+        }
+        $entry['created'] = $raw_entry->getSystemProperties()->getCreatedAt();
+        return $entry;
     }
 }
