@@ -4,12 +4,12 @@
 
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
-	<main class="c-article-full" id="content">
+	<main class="c-page-full" id="content">
 		<div class="c-text-header">
 			<h1>{{ article.title }}</h1>
 		</div>
 
-		<span class="c-article-full__meta">
+		<span class="c-page-full__meta">
 			{% if article.authorName %}
 				{{ article.authorName }} {{ article.created|date('d.m.Y') }}
 			{% else %}
@@ -17,7 +17,7 @@
 			{% endif %}
 		</span>
 
-		<div class="c-article-full__content">
+		<div class="c-page-full__content">
 			{{ article.content|markdown }}
 
 			{% include 'partials/attachments.html.twig' with { attachments: article.attachments } %}
