@@ -3,40 +3,45 @@
 {% block title %}Etusivu{% endblock %}
 
 {% block content %}
-	<h1>{{ snippets.frontPageSlogan }}</h1>
-	{{ snippets.frontPageIntro|markdown }}
+	<main>
+		<header class="c-header">
+			<h1>{{ snippets.frontPageSlogan }}</h1>
+		</header>
 
-	<h2>Artikkelit</h2>
-	{% for article in articles %}
-		{% include 'partials/article.html.twig' %}
-	{% endfor %}
-	<div>
-		<a href="{{ path('articles') }}">Näytä lisää</a>
-	</div>
+		{{ snippets.frontPageIntro|markdown }}
 
-	<h2>Tapahtumat</h2>
-	<ul>
-	{% for event in events %}
-		<li>
-			{# TODO päivämäärien ja kellonaikojen käsittely #}
-			{% if event.datetimeEnd %}
-				{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
-			{% else %}
-				{{ event.datetimeStart|date('d.m.Y') }}
-			{% endif %}
-			{{ event.title }}
-			{% if event.registrationLink %}
-				<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
-			{% endif %}
-			{% if event.content %}
-				<a href="{{ path('event', { slug: event.slug }) }}">Lisätiedot</a>
-			{% endif %}
-		</li>
-	{% endfor %}
-	</ul>
+		<h2>Artikkelit</h2>
+		{% for article in articles %}
+			{% include 'partials/article.html.twig' %}
+		{% endfor %}
+		<div>
+			<a href="{{ path('articles') }}">Näytä lisää</a>
+		</div>
 
-	<div>
-		<a href="{{ path('events') }}">Kaikki tapahtumat</a>
-	</div>
+		<h2>Tapahtumat</h2>
+		<ul>
+		{% for event in events %}
+			<li>
+				{# TODO päivämäärien ja kellonaikojen käsittely #}
+				{% if event.datetimeEnd %}
+					{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
+				{% else %}
+					{{ event.datetimeStart|date('d.m.Y') }}
+				{% endif %}
+				{{ event.title }}
+				{% if event.registrationLink %}
+					<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
+				{% endif %}
+				{% if event.content %}
+					<a href="{{ path('event', { slug: event.slug }) }}">Lisätiedot</a>
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+
+		<div>
+			<a href="{{ path('events') }}">Kaikki tapahtumat</a>
+		</div>
+	</main>
 
 {% endblock %}

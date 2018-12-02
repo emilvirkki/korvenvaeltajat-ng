@@ -1,0 +1,14 @@
+.c-header {
+  // TODO mieti voisko tän tehdä VH-yksiköillä, esim. 90vh -> olisi aina vähän sivua näkyvissä
+  height: 24*$row;
+  // TODO other sizes
+  background: 50% 50% no-repeat asset('header-image-1x.jpg');
+
+  h1 {
+    font-size: font-scale(3);
+    line-height: 1.2;
+    color: $font-color-inverse;
+    padding: 9*$row 2*$col 0 4*$col;
+    text-shadow: $text-shadow-large;
+  }
+}

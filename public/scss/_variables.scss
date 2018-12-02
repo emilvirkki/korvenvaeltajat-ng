@@ -1,12 +1,46 @@
 // Colors
 
 $font-color: #333;
+$font-color-inverse: #fff;
 $background-color: #fff;
 
-// Sizes
+// Sizes and spacing
 
-$font-size: 20px;
 $line-height: 1.4rem;
+$spacing: $line-height;
+$row: $line-height;
+$col: 100% / 12;
+
+// Fonts
 
 $heading-font: 'Source Sans Pro', sans-serif;
 $body-font: 'PT Sans', sans-serif;
+$font-size: 20px;
+
+// Shadows
+
+$text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+$text-shadow-large: 0 2px 10px rgba(0,0,0,0.25);
+// TODO check if we need one more for nav (almost exactly like the larger one)
+
+$box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+$box-shadow-large: 0 8px 20px 0 rgba(0,0,0,0.50);
+// TODO check if we need one more for logo (almost exactly like the larger one)
+
+@function pow($value, $exponent) {
+  $acc: 1;
+
+  @if $exponent == 0 {
+    @return 1;
+  }
+
+  @for $i from 1 through $exponent {
+    $acc: $acc * $value;
+  }
+
+  @return $acc;
+}
+
+@function font-scale($n) {
+  @return pow(1.414, $n) * 1rem;
+}
