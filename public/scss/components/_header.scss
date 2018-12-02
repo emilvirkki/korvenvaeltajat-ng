@@ -3,6 +3,7 @@
   height: 24*$row;
   // TODO other sizes
   background: 50% 50% no-repeat asset('header-image-1x.jpg');
+  background-size: cover;
 
   h1 {
     @include font($heading-font, 3);
