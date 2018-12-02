@@ -5,6 +5,33 @@
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
 	<main id="content">
-		<h1>Yhteystiedot</h1>
+		<div class="c-text-header v-bottom-space">
+			<h1>Yhteystiedot</h1>
+		</div>
+
+		<div class="c-section-container v-even v-no-bg">
+			<div class="c-section v-full-content">
+				{{ snippets.contactChairman|markdown }}
+			</div>
+			<div class="c-section v-full-content">
+				{{ snippets.contactRegisterAdmin|markdown }}
+			</div>
+		</div>
+
+		<div class="c-section-container v-even v-bg-light">
+			<div class="c-section v-full-content">
+				{{ snippets.visitingAddress|markdown }}
+			</div>
+			<div class="c-section v-full-content">
+				{{ snippets.mailingAddress|markdown }}
+			</div>
+		</div>
+
+		<div class="c-section-container v-no-bg v-one">
+			<div class="c-section v-full-content">
+				{{ snippets.contactTreasurer|markdown }}
+			</div>
+		</div>
+
 	</main>
 {% endblock %}

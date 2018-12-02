@@ -17,6 +17,10 @@
 .c-text-header {
   padding-top: 8*$row;
 
+  &.v-bottom-space {
+    margin-bottom: 2*$row;
+  }
+
   h1 {
     @include font($heading-font, 3);
     line-height: 2.5*$line-height;

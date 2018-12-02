@@ -6,8 +6,12 @@
   grid-row-gap: 2*$row;
   grid-auto-flow: column;
 
+  &.v-bg-light {
+    background: $light-green;
+  }
+
   &.v-no-bg {
-    background: none;
+    background: none; // TODO refactor this to default
   }
 
   &.v-one {
@@ -15,7 +19,11 @@
   }
 
   &.v-wide-narrow {
-    grid-template-columns: 6fr 4fr;
+    grid-template-columns: 7fr 5fr;
+  }
+
+  &.v-3-9 {
+    grid-template-columns: 3fr 9fr;
   }
 
   &.v-even {
@@ -32,6 +40,15 @@
   &.v-inverse h2 {
     color: $font-color-inverse;
     text-shadow: $text-shadow;
+  }
+
+  // Allows content styles
+  &.v-full-content {
+    @include content-styles;
+
+    :first-child {
+      margin-top: 0; // Otherwise there content styles mess up the margins
+    }
   }
 
   &__actions {
