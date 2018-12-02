@@ -37,6 +37,13 @@
     @include link;
   }
 
+  img {
+    display: block;
+    margin: $row auto;
+    max-width: 100%;
+    height: auto;
+  }
+
   // In case someone uses h1 on markdown
   h1, h2 {
     @include font($heading-font, 2);
