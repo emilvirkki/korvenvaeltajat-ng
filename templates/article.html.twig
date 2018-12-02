@@ -5,7 +5,9 @@
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
 	<main class="c-article-full">
-		<h1 class="c-article-full__heading">{{ article.title }}</h1>
+		<div class="c-text-header">
+			<h1>{{ article.title }}</h1>
+		</div>
 
 		<span class="c-article-full__meta">
 			{% if article.authorName %}

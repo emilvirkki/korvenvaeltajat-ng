@@ -3,5 +3,39 @@
 {% block title %}Liity mukaan partioon{% endblock %}
 
 {% block content %}
-	<h1>Liity mukaan partioon</h1>
+	{% include 'partials/navigation.html.twig' %}
+	<main>
+		<div class="c-text-header">
+			<h1>{{ snippets.joinHeading }}</h1>
+		</div>
+
+		<div class="c-intro v-tight-up">
+			{{ snippets.joinIntroShort }}
+			<div class="c-intro__secondary">
+				{{ snippets.joinIntroLong|markdown }}
+			</div>
+		</div>
+
+		<div class="c-section-container v-even">
+			<div class="c-panel v-centered">
+				<h2>Lapset</h2>
+				<div class="c-panel__content">
+					{{ snippets.joinKids|markdown }}
+				</div>
+				<div class="c-panel__actions">
+					<a href="https://kuksa.partio.fi/kotisivut/jasenhakemus.aspx?id=9999426" class="c-button">Täytä jäsenhakemus</a>
+				</div>
+			</div>
+
+			<div class="c-panel v-centered">
+				<h2>Aikuiset</h2>
+				<div class="c-panel__content">
+					{{ snippets.joinAdults|markdown }}
+				</div>
+				<div class="c-panel__actions">
+					<a href="https://kuksa.partio.fi/kotisivut/jasenhakemus.aspx?id=9999426" class="c-button">Täytä jäsenhakemus</a>
+				</div>
+			</div>
+		</div>
+	</main>
 {% endblock %}

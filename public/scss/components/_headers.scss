@@ -13,3 +13,15 @@
     text-shadow: $text-shadow-large;
   }
 }
+
+.c-text-header {
+  padding-top: 8*$row;
+
+  h1 {
+    @include font($heading-font, 3);
+    line-height: 2.5*$line-height;
+    width: 8*$col;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

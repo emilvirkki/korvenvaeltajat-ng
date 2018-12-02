@@ -10,7 +10,9 @@
     grid-template-columns: 6fr 4fr;
   }
 
-  // TODO equal width version
+  &.v-even {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .c-section {

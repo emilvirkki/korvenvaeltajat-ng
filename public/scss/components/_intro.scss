@@ -4,7 +4,22 @@
   line-height: 1.4;
   text-align: center;
 
+  &__secondary {
+    margin-top: $row;
+    @include font($body-font, 0);
+    line-height: $line-height;
+  }
+
   &__cta {
     margin-top: 2*$row;
+  }
+
+  p + p {
+    margin-top: $line-height;
+  }
+
+  // Use in cases where you want to associate the intro with the thing above
+  &.v-tight-up {
+    padding-top: $row;
   }
 }

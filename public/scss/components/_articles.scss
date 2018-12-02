@@ -30,20 +30,11 @@
 }
 
 .c-article-full {
-  padding-top: 8*$row;
-
-  &__heading {
-    @include font($heading-font, 3);
-    line-height: 2.5*$line-height;
-    width: 8*$col;
-    margin: 0 auto $row;
-    text-align: center;
-  }
-
   &__meta {
     display: block;
     text-align: center;
     font-weight: bold;
+    margin: $row 0 0;
   }
 
   &__content {

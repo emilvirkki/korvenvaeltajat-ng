@@ -1,0 +1,21 @@
+.c-panel {
+  @include panel;
+  padding: $spacing-l;
+
+  &__content {
+    @include content-styles;
+  }
+
+  h2 {
+    @include font($heading-font, 2);
+    margin-bottom: $row;
+  }
+
+  &__actions {
+    margin-top: $row;
+  }
+
+  &.v-centered {
+    text-align: center;
+  }
+}
