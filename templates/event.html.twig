@@ -3,19 +3,22 @@
 {% block title %}{{ event.title }}{% endblock %}
 
 {% block content %}
-	<h1>{{ event.title }}</h1>
+	{% include 'partials/navigation.html.twig' %}
+	<main id="content">
+		<h1>{{ event.title }}</h1>
 
-	{% if event.datetimeEnd %}
-		{{ event.datetimeStart|date('d.m.Y H:i') }} – {{ event.datetimeEnd|date('d.m.Y H:i') }}
-	{% else %}
-		{{ event.datetimeStart|date('d.m.Y H:i') }}
-	{% endif %}
+		{% if event.datetimeEnd %}
+			{{ event.datetimeStart|date('d.m.Y H:i') }} – {{ event.datetimeEnd|date('d.m.Y H:i') }}
+		{% else %}
+			{{ event.datetimeStart|date('d.m.Y H:i') }}
+		{% endif %}
 
-	{{ event.content|markdown }}
+		{{ event.content|markdown }}
 
-	{% if event.registrationLink %}
-		<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
-	{% endif %}
+		{% if event.registrationLink %}
+			<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
+		{% endif %}
 
-	{% include 'partials/attachments.html.twig' with { attachments: event.attachments } %}
+		{% include 'partials/attachments.html.twig' with { attachments: event.attachments } %}
+	</main>
 {% endblock %}

@@ -3,6 +3,9 @@
 {% block title %}Ajankohtaista{% endblock %}
 
 {% block content %}
-	<h1>Ajankohtaista</h1>
-	{% include 'partials/article_list.html.twig' %}
+	{% include 'partials/navigation.html.twig' %}
+	<main id="content">
+		<h1>Ajankohtaista</h1>
+		{% include 'partials/article_list.html.twig' %}
+	</main>
 {% endblock %}

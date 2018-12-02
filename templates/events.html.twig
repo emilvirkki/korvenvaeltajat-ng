@@ -3,26 +3,29 @@
 {% block title %}Tapahtumat{% endblock %}
 
 {% block content %}
-	<h1>Tapahtumat</h1>
-	{# TODO Check what kind of styling we want and a) make a partial shared with homepage or 2) change the code below #}
-	<ul>
-	{% for event in events %}
-		<li>
-			{# TODO päivämäärien ja kellonaikojen käsittely #}
-			{% if event.datetimeEnd %}
-				{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
-			{% else %}
-				{{ event.datetimeStart|date('d.m.Y') }}
-			{% endif %}
-			{{ event.title }}
-			{% if event.registrationLink %}
-				<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
-			{% endif %}
-			{% if event.content %}
-				<a href="{{ path('event', { slug: event.slug }) }}">Lisätiedot</a>
-			{% endif %}
-		</li>
-	{% endfor %}
-	</ul>
+	{% include 'partials/navigation.html.twig' %}
+	<main id="content">
+		<h1>Tapahtumat</h1>
+		{# TODO Check what kind of styling we want and a) make a partial shared with homepage or 2) change the code below #}
+		<ul>
+		{% for event in events %}
+			<li>
+				{# TODO päivämäärien ja kellonaikojen käsittely #}
+				{% if event.datetimeEnd %}
+					{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
+				{% else %}
+					{{ event.datetimeStart|date('d.m.Y') }}
+				{% endif %}
+				{{ event.title }}
+				{% if event.registrationLink %}
+					<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
+				{% endif %}
+				{% if event.content %}
+					<a href="{{ path('event', { slug: event.slug }) }}">Lisätiedot</a>
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+	</main>
 
 {% endblock %}
