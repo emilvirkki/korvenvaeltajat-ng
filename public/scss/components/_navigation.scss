@@ -1,0 +1,26 @@
+.c-navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  h1 {
+
+  }
+
+  ul {
+    float: right;
+    line-height: 2*$row;
+  }
+
+  li {
+    float: left;
+
+    a {
+      text-decoration: none;
+      color: $font-color-inverse;
+      margin-left: $spacing;
+      @include font($heading-font, 0);
+    }
+  }
+}

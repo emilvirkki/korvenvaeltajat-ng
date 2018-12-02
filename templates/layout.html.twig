@@ -7,43 +7,44 @@
 		<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|Source+Sans+Pro:900" rel="stylesheet">
 	</head>
 	<body>
-		<a href="#content" class="visually-hidden">Hyppää sisältöön</a>
-		<h1><a href="{{ path('home') }}">Korven Vaeltajat</a></h1>
-		{%
-			set pages = [
-				{
-					'title': 'Etusivu',
-					'route': 'home'
-				},
-				{
-					'title': 'Mikä partio?',
-					'route': 'about_scouting'
-				},
-				{
-					'title': 'Lippukunta',
-					'route': 'troop'
-				},
-				{
-					'title': 'Yhteystiedot',
-					'route': 'contact'
-				},
-				{
-					'title': 'Liity mukaan!',
-					'route': 'join'
-				}
-			]
-		%}
+		<header class="c-navigation">
+			<a href="#content" class="visually-hidden">Hyppää sisältöön</a>
+			<h1><a href="{{ path('home') }}">Korven Vaeltajat</a></h1>
+			{%
+				set pages = [
+					{
+						'title': 'Etusivu',
+						'route': 'home'
+					},
+					{
+						'title': 'Mikä partio?',
+						'route': 'about_scouting'
+					},
+					{
+						'title': 'Lippukunta',
+						'route': 'troop'
+					},
+					{
+						'title': 'Yhteystiedot',
+						'route': 'contact'
+					},
+					{
+						'title': 'Liity mukaan!',
+						'route': 'join'
+					}
+				]
+			%}
 
-		<ul>
-		{% for page in pages %}
-        	<li><a href="{{ path(page.route) }}"
-				{% if (page.route == template) %}
-					class="active"
-				{% endif %}
-        	>{{ page.title }}</a></li>
-		{% endfor %}
-		</ul>
-
+			<ul>
+			{% for page in pages %}
+	        	<li><a href="{{ path(page.route) }}"
+					{% if (page.route == template) %}
+						class="active"
+					{% endif %}
+	        	>{{ page.title }}</a></li>
+			{% endfor %}
+			</ul>
+		</header>
 		{% block content %}{% endblock %}
 	</body>
 </html>
