@@ -11,4 +11,9 @@
     margin: 2*$row auto;
     @include content-styles;
   }
+
+  &__actions {
+    margin: $row 0 0;
+    text-align: center;
+  }
 }

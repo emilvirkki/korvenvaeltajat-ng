@@ -4,21 +4,31 @@
 
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
-	<main id="content">
-		<h1>{{ event.title }}</h1>
+	<main id="content" class="c-page-full">
+		<div class="c-text-header">
+			<h1>{{ event.title }}</h1>
+		</div>
 
-		{% if event.datetimeEnd %}
-			{{ event.datetimeStart|date('d.m.Y H:i') }} – {{ event.datetimeEnd|date('d.m.Y H:i') }}
-		{% else %}
-			{{ event.datetimeStart|date('d.m.Y H:i') }}
-		{% endif %}
-
-		{{ event.content|markdown }}
+		<div class="c-page-full__meta">
+			{% if event.datetimeEnd %}
+				{{ event.datetimeStart|date('d.m.Y H:i') }} –
+				{{ event.datetimeEnd|date('d.m.Y H:i') }}
+			{% else %}
+				{{ event.datetimeStart|date('d.m.Y H:i') }}
+			{% endif %}
+		</div>
 
 		{% if event.registrationLink %}
-			<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
+			<div class="c-page-full__actions">
+				<a href="{{ event.registrationLink }}" class="c-button">Ilmoittaudu</a>
+			</div>
 		{% endif %}
 
-		{% include 'partials/attachments.html.twig' with { attachments: event.attachments } %}
+		<div class="c-page-full__content">
+			{{ event.content|markdown }}
+
+			{% include 'partials/attachments.html.twig' with { attachments: event.attachments } %}
+		</div>
+
 	</main>
 {% endblock %}
