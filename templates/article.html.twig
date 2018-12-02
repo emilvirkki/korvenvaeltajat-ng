@@ -3,15 +3,22 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
-	<h1>{{ article.title }}</h1>
+	{% include 'partials/navigation.html.twig' %}
+	<main class="c-article-full">
+		<h1 class="c-article-full__heading">{{ article.title }}</h1>
 
-	{% if article.authorName %}
-		{{ article.authorName }} {{ article.created|date('d.m.Y') }}
-	{% else %}
-		{{ article.created|date('d.m.Y') }}
-	{% endif %}
+		<span class="c-article-full__meta">
+			{% if article.authorName %}
+				{{ article.authorName }} {{ article.created|date('d.m.Y') }}
+			{% else %}
+				{{ article.created|date('d.m.Y') }}
+			{% endif %}
+		</span>
 
-	{{ article.content|markdown }}
+		<div class="c-article-full__content">
+			{{ article.content|markdown }}
 
-	{% include 'partials/attachments.html.twig' with { attachments: article.attachments } %}
+			{% include 'partials/attachments.html.twig' with { attachments: article.attachments } %}
+		</div>
+	</main>
 {% endblock %}
