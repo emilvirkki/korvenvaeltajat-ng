@@ -3,13 +3,27 @@
   top: 0;
   left: 0;
   right: 0;
+  padding: 0 $grid-offset;
 
   h1 {
+    float: left;
+    width: 7.5*$spacing;
+    background: $dark-green;
+    box-shadow: $box-shadow-large;
 
+    a {
+      display: block;
+      height: 4*$row;
+      text-indent: -99em;
+      overflow: hidden;
+      // TODO Use SVG once you know what causes the blurriness
+      background: 50% 50% no-repeat asset('lpk-logo.png');
+    }
   }
 
   ul {
     float: right;
+    margin-top: $row;
     line-height: 2*$row;
   }
 
@@ -21,6 +35,7 @@
       color: $font-color-inverse;
       margin-left: $spacing;
       @include font($heading-font, 0);
+      text-shadow: $text-shadow-large;
     }
   }
 }

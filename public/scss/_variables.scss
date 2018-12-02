@@ -4,12 +4,18 @@ $font-color: #333;
 $font-color-inverse: #fff;
 $background-color: #fff;
 
+$dark-green: #0E7B38;
+
 // Sizes and spacing
 
 $line-height: 1.4rem;
 $spacing: $line-height;
 $row: $line-height;
-$col: 100% / 12;
+
+$page-width: 100%;
+$grid-offset: 4%; // Space ("margin") left outside the grid
+$grid-width: 100% - 2*$grid-offset;
+$col: $grid-width / 12;
 
 // Fonts
 
