@@ -1,0 +1,30 @@
+.c-article-list {
+  .c-article + .c-article {
+    margin-top: 2*$spacing;
+  }
+}
+
+.c-article {
+  @include panel;
+  padding: $spacing;
+
+  &__date {
+    display: block;
+    @include font($heading-font, 1);
+  }
+
+  h3 {
+    margin: $spacing/2 0;
+    @include font($heading-font, 2);
+    line-height: 1.1;
+
+    a {
+      text-decoration: none;
+      color: $font-color;
+    }
+  }
+
+  &__actions {
+    margin-top: 1em;
+  }
+}

@@ -1,0 +1,16 @@
+<ul class="c-article-list">
+{% for article in articles %}
+	<li class="c-article">
+		{% set link = path('article', { slug: article.slug }) %}
+
+		<span class="c-article__date">
+			{% include 'partials/date.html.twig' with { date: article.created } %}
+		</span>
+		<h3><a href="{{ link }}">{{ article.title }}</a></h3>
+		{{ article.content|markdown|striptags|truncate(140, true) }}
+		<div class="c-article__actions">
+			<a href="{{ link }}" class="c-button v-small">Lue lisää</a>
+		</div>
+	</li>
+{% endfor %}
+</ul>

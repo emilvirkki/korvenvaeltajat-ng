@@ -20,9 +20,7 @@
 			<section class="c-section c-section-container__wide v-inverse">
 				<h2>Artikkelit</h2>
 
-				{% for article in articles %}
-					{% include 'partials/article.html.twig' %}
-				{% endfor %}
+				{% include 'partials/article_list.html.twig' %}
 
 				<div class="c-section__actions">
 					<a href="{{ path('articles') }}" class="c-button">Näytä lisää</a>
