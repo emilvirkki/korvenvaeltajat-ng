@@ -111,4 +111,10 @@
       background: $light-green;
     }
   }
+
+  hr {
+    width: 2*$col;
+    border: 1px solid #aaa;
+    margin: 1.5*$row auto;
+  }
 }
