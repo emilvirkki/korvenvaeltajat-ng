@@ -34,8 +34,13 @@
       text-decoration: none;
       color: $font-color-inverse;
       margin-left: $spacing;
+      padding-bottom: 5px;
       @include font($heading-font, 0);
       text-shadow: $text-shadow-large;
+    }
+
+    a.c-navigation__active, a:hover, a:active {
+      border-bottom: 5px solid $font-color-inverse;
     }
   }
 }

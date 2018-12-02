@@ -30,18 +30,20 @@
 					},
 					{
 						'title': 'Liity mukaan!',
-						'route': 'join'
+						'route': 'join',
+						'class': 'c-button'
 					}
 				]
 			%}
 
 			<ul>
 			{% for page in pages %}
-	        	<li><a href="{{ path(page.route) }}"
-					{% if (page.route == template) %}
-						class="active"
-					{% endif %}
-	        	>{{ page.title }}</a></li>
+				{% if (page.route == template) %}
+					{% set classes = [ 'c-navigation__active', page.class ] %}
+				{% else %}
+					{% set classes = [ page.class ] %}
+				{% endif %}
+	        	<li><a href="{{ path(page.route) }}" class="{{ classes|join(' ') }}">{{ page.title }}</a></li>
 			{% endfor %}
 			</ul>
 		</header>
