@@ -1,3 +1,42 @@
+@import 'variables';
+
+html {
+  font-size: $font-size;
+}
+
 body {
-  background: #fff;
+  background: $background-color;
+  font-color: $font-color;
+  line-height: $line-height;
+  font-family: $body-font;
+
+  // Better font rendering
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Reset some styles
+h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+}
+
+// Fix IE11 bug
+main {
+  display: block;
+}
+
+// Utility classes
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+.completely-hidden {
+  display: none;
 }
