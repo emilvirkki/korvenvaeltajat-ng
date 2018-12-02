@@ -16,9 +16,25 @@
   color: $dark-green;
   text-decoration: none;
   font-weight: bold;
+
+  &:visited {
+    color: darken($orange, 30%); // TODO maybe add this color to vars
+
+    &:hover, &:active {
+      color: $orange;
+    }
+  }
+
+  &:hover, &:active {
+    color: lighten($dark-green, 15%);
+  }
 }
 
 @mixin content-styles {
+  a {
+    @include link;
+  }
+
   // In case someone uses h1 on markdown
   h1, h2 {
     @include font($heading-font, 2);
