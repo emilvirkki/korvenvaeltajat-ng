@@ -11,10 +11,19 @@
 
 		<div class="c-page-full__meta">
 			{% if event.datetimeEnd %}
-				{{ event.datetimeStart|date('d.m.Y H:i') }} –
-				{{ event.datetimeEnd|date('d.m.Y H:i') }}
+				{% include 'partials/date.html.twig' with {
+					date: event.datetimeStart,
+					withTime: true }
+				%} –
+				{% include 'partials/date.html.twig' with {
+					date: event.datetimeEnd,
+					withTime: true }
+				%}
 			{% else %}
-				{{ event.datetimeStart|date('d.m.Y H:i') }}
+				{% include 'partials/date.html.twig' with {
+					date: event.datetimeStart,
+					withTime: true }
+				%}
 			{% endif %}
 		</div>
 
