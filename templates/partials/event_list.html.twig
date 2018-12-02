@@ -5,9 +5,10 @@
 			<span class="c-event__dates">
 				{# TODO päivämäärien ja kellonaikojen käsittely #}
 				{% if event.datetimeEnd %}
-					{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
+					{% include 'partials/date.html.twig' with { date: event.datetimeStart } %} –
+					{% include 'partials/date.html.twig' with { date: event.datetimeEnd } %}
 				{% else %}
-					{{ event.datetimeStart|date('d.m.Y') }}
+					{% include 'partials/date.html.twig' with { date: event.datetimeStart } %}
 				{% endif %}
 			</span>
 			<h3 class="c-event__title">{{ event.title }}</h3>
