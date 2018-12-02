@@ -1,0 +1,31 @@
+.c-event-list {
+  @include panel;
+
+  li {
+    padding: $spacing;
+  }
+
+  li:nth-child(2n) {
+    background: $light-green;
+  }
+}
+
+.c-event {
+  &__dates {
+    display: block;
+    margin-bottom: $spacing/2;
+    @include font($heading-font, 0);
+  }
+
+  &__title {
+    @include font($heading-font, 1);
+  }
+
+  &__actions {
+    margin-top: $spacing;
+
+    * + * {
+      margin-left: $spacing;
+    }
+  }
+}

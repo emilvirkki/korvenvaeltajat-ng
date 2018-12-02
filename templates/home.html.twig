@@ -32,22 +32,28 @@
 			<section class="c-section c-section-container__narrow v-inverse">
 				<h2>Tapahtumat</h2>
 
-				<div class="c-panel">
+				<div class="c-event-list">
 					<ul>
 					{% for event in events %}
-						<li>
-							{# TODO päivämäärien ja kellonaikojen käsittely #}
-							{% if event.datetimeEnd %}
-								{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
-							{% else %}
-								{{ event.datetimeStart|date('d.m.Y') }}
-							{% endif %}
-							{{ event.title }}
-							{% if event.registrationLink %}
-								<a href="{{ event.registrationLink }}" class="c-button v-small">Ilmoittaudu</a>
-							{% endif %}
-							{% if event.content %}
-								<a href="{{ path('event', { slug: event.slug }) }}" class="c-link-button v-small">Lisätiedot</a>
+						<li class="c-event">
+							<span class="c-event__dates">
+								{# TODO päivämäärien ja kellonaikojen käsittely #}
+								{% if event.datetimeEnd %}
+									{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
+								{% else %}
+									{{ event.datetimeStart|date('d.m.Y') }}
+								{% endif %}
+							</span>
+							<h3 class="c-event__title">{{ event.title }}</h3>
+							{% if event.registrationLink or event.content %}
+								<div class="c-event__actions">
+									{% if event.registrationLink %}
+										<a href="{{ event.registrationLink }}" class="c-button v-small">Ilmoittaudu</a>
+									{% endif %}
+									{% if event.content %}
+										<a href="{{ path('event', { slug: event.slug }) }}" class="c-link-button v-small">Lisätiedot</a>
+									{% endif %}
+								</div>
 							{% endif %}
 						</li>
 					{% endfor %}

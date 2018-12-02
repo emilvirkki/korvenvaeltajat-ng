@@ -1,0 +1,31 @@
+.c-button {
+  display: inline-block;
+  height: 2*$line-height;
+  line-height: 2*$line-height;
+  border-radius: $line-height;
+  padding: 0 $spacing;
+
+  background: $orange;
+  text-decoration: none;
+  color: $font-color;
+  box-shadow: $box-shadow;
+  @include font($heading-font, 0);
+
+  &.v-small {
+    height: 1.5*$line-height;
+    line-height: 1.5*$line-height;
+  }
+}
+
+.c-link-button {
+  display: inline-block;
+  height: 2*$line-height;
+  line-height: 2*$line-height;
+  @include link;
+  @include font($heading-font, 0);
+
+  &.v-small {
+    height: 1.5*$line-height;
+    line-height: 1.5*$line-height;
+  }
+}

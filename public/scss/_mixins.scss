@@ -1,0 +1,19 @@
+@mixin font($family, $size_n) {
+  font-size: font-scale($size_n);
+  font-family: $family;
+
+  @if $family == $heading-font {
+    font-weight: 900;
+  }
+}
+
+@mixin panel {
+  background: $background-color;
+  box-shadow: $box-shadow-large;
+}
+
+@mixin link {
+  color: $dark-green;
+  text-decoration: none;
+  font-weight: bold;
+}

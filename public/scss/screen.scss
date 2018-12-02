@@ -48,20 +48,16 @@ main {
   @return url('/assets/' + $path);
 }
 
-@mixin font($family, $size_n) {
-  font-size: font-scale($size_n);
-  font-family: $family;
+// Mixins
 
-  @if $family == $heading-font {
-    font-weight: 900;
-  }
-}
+@import 'mixins';
 
 // Components
 
-@import 'components/button';
+@import 'components/buttons';
 @import 'components/navigation';
 @import 'components/header';
 @import 'components/intro';
 @import 'components/section';
 @import 'components/section-container';
+@import 'components/events';
