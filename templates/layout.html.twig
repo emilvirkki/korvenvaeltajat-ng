@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="/styles/screen.css">
 		<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|Source+Sans+Pro:900" rel="stylesheet">
 	</head>
-	<body>
+	<body class="{% block body_variant %}{% endblock %}">
 		<a href="#content" class="visually-hidden">Hyppää sisältöön</a>
 		{% block content %}{% endblock %}
 	</body>

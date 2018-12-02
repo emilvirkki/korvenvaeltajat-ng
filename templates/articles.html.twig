@@ -2,10 +2,16 @@
 
 {% block title %}Ajankohtaista{% endblock %}
 
+{% block body_variant %}v-colored{% endblock %}
+
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
 	<main id="content">
-		<h1>Ajankohtaista</h1>
-		{% include 'partials/article_list.html.twig' %}
+		<div class="c-text-header">
+			<h1>Ajankohtaista</h1>
+		</div>
+		<div class="c-section-container v-no-bg v-one">
+			{% include 'partials/article_list.html.twig' %}
+		</div>
 	</main>
 {% endblock %}

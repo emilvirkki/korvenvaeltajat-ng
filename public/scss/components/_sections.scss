@@ -6,6 +6,14 @@
   grid-row-gap: 2*$row;
   grid-auto-flow: column;
 
+  &.v-no-bg {
+    background: none;
+  }
+
+  &.v-one {
+    padding: 2*$row $grid-offset+2*$col;
+  }
+
   &.v-wide-narrow {
     grid-template-columns: 6fr 4fr;
   }
