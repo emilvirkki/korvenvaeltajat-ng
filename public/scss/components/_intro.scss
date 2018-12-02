@@ -19,7 +19,8 @@
   }
 
   // Use in cases where you want to associate the intro with the thing above
-  &.v-tight-up {
+  &.v-bind-up {
     padding-top: $row;
+    padding-bottom: 4*$row;
   }
 }
