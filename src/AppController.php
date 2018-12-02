@@ -25,7 +25,9 @@ class AppController extends AbstractController
         );
 
         $articles = $this->getEntries(
-            $this->query('article')->setLimit(3)
+            $this->query('article')
+                ->orderBy('-sys.createdAt')
+                ->setLimit(3)
         );
 
         return $this->renderTemplate('home', array(
@@ -41,7 +43,7 @@ class AppController extends AbstractController
     {
         //TODO Add paging
         $article = $this->getEntries(
-            $this->query('article')
+            $this->query('article')->orderBy('-sys.createdAt')
         );
 
         return $this->renderTemplate('articles', array(
