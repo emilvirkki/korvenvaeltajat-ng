@@ -11,7 +11,7 @@
 			<a href="#content" class="visually-hidden">Hyppää sisältöön</a>
 			<h1><a href="{{ path('home') }}">Korven Vaeltajat</a></h1>
 			{%
-				set pages = [
+				set links = [
 					{
 						'title': 'Etusivu',
 						'route': 'home'
@@ -37,13 +37,12 @@
 			%}
 
 			<ul>
-			{% for page in pages %}
-				{% if (page.route == template) %}
-					{% set classes = [ 'c-navigation__active', page.class ] %}
-				{% else %}
-					{% set classes = [ page.class ] %}
+			{% for link in links %}
+				{% set classes = [ link.class|default('c-navigation__link') ] %}
+				{% if (link.route == template) %}
+					{% set classes = classes|merge([ 'c-navigation__active' ]) %}
 				{% endif %}
-	        	<li><a href="{{ path(page.route) }}" class="{{ classes|join(' ') }}">{{ page.title }}</a></li>
+	        	<li><a href="{{ path(link.route) }}" class="{{ classes|join(' ') }}">{{ link.title }}</a></li>
 			{% endfor %}
 			</ul>
 		</header>
