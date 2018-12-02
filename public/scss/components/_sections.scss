@@ -16,7 +16,7 @@
 .c-section {
   h2 {
     @include font($heading-font, 2);
-    margin: 0 0 $row 0;
+    margin: 0 0 1.5*$row 0;
   }
 
   &.v-inverse h2 {
