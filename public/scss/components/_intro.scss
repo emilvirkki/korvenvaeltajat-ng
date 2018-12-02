@@ -1,0 +1,10 @@
+.c-intro {
+  padding: 3*$row 2*$col+$grid-offset;
+  @include font($body-font, 1);
+  line-height: 1.4;
+  text-align: center;
+
+  &__cta {
+    margin-top: 2*$row;
+  }
+}
