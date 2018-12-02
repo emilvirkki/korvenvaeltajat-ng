@@ -48,6 +48,15 @@ main {
   @return url('/assets/' + $path);
 }
 
+@mixin font($family, $size_n) {
+  font-size: font-scale($size_n);
+  font-family: $family;
+
+  @if $family == $heading-font {
+    font-weight: 900;
+  }
+}
+
 // Components
 
 @import 'components/header';

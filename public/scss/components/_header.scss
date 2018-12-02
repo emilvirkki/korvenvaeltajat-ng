@@ -5,9 +5,7 @@
   background: 50% 50% no-repeat asset('header-image-1x.jpg');
 
   h1 {
-    font-family: $heading-font;
-    font-weight: $heading-font-weight;
-    font-size: font-scale(3);
+    @include font($heading-font, 3);
     line-height: 1.2;
     color: $font-color-inverse;
     padding: 9*$row 2*$col 0 4*$col;
