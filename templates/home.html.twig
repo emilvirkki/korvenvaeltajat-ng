@@ -15,37 +15,49 @@
 			</div>
 		</div>
 
-		<h2>Artikkelit</h2>
-		{% for article in articles %}
-			{% include 'partials/article.html.twig' %}
-		{% endfor %}
-		<div>
-			<a href="{{ path('articles') }}">Näytä lisää</a>
-		</div>
+		<div class="c-section-container v-wide-narrow">
 
-		<h2>Tapahtumat</h2>
-		<ul>
-		{% for event in events %}
-			<li>
-				{# TODO päivämäärien ja kellonaikojen käsittely #}
-				{% if event.datetimeEnd %}
-					{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
-				{% else %}
-					{{ event.datetimeStart|date('d.m.Y') }}
-				{% endif %}
-				{{ event.title }}
-				{% if event.registrationLink %}
-					<a href="{{ event.registrationLink }}">Ilmoittaudu</a>
-				{% endif %}
-				{% if event.content %}
-					<a href="{{ path('event', { slug: event.slug }) }}">Lisätiedot</a>
-				{% endif %}
-			</li>
-		{% endfor %}
-		</ul>
+			<section class="c-section c-section-container__wide v-inverse">
+				<h2>Artikkelit</h2>
 
-		<div>
-			<a href="{{ path('events') }}">Kaikki tapahtumat</a>
+				{% for article in articles %}
+					{% include 'partials/article.html.twig' %}
+				{% endfor %}
+
+				<div class="c-section__actions">
+					<a href="{{ path('articles') }}" class="c-button">Näytä lisää</a>
+				</div>
+			</section>
+
+			<section class="c-section c-section-container__narrow v-inverse">
+				<h2>Tapahtumat</h2>
+
+				<div class="c-panel">
+					<ul>
+					{% for event in events %}
+						<li>
+							{# TODO päivämäärien ja kellonaikojen käsittely #}
+							{% if event.datetimeEnd %}
+								{{ event.datetimeStart|date('d.m.Y') }} – {{ event.datetimeEnd|date('d.m.Y') }}
+							{% else %}
+								{{ event.datetimeStart|date('d.m.Y') }}
+							{% endif %}
+							{{ event.title }}
+							{% if event.registrationLink %}
+								<a href="{{ event.registrationLink }}" class="c-button v-small">Ilmoittaudu</a>
+							{% endif %}
+							{% if event.content %}
+								<a href="{{ path('event', { slug: event.slug }) }}" class="c-link-button v-small">Lisätiedot</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+					</ul>
+				</div>
+
+				<div class="c-section__actions">
+					<a href="{{ path('events') }}" class="c-button">Kaikki tapahtumat</a>
+				</div>
+			</section>
 		</div>
 	</main>
 
