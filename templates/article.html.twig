@@ -11,9 +11,10 @@
 
 		<span class="c-page-full__meta">
 			{% if article.authorName %}
-				{{ article.authorName }} {{ article.created|date('d.m.Y') }}
+				{{ article.authorName }}
+				{% include 'partials/date.html.twig' with { date: article.created } %}
 			{% else %}
-				{{ article.created|date('d.m.Y') }}
+				{% include 'partials/date.html.twig' with { date: article.created } %}
 			{% endif %}
 		</span>
 
