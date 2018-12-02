@@ -33,14 +33,21 @@
 
     a.c-navigation__link {
       text-decoration: none;
-      color: $font-color-inverse;
+      color: $dark-green;
       padding-bottom: 5px;
       @include font($heading-font, 0);
-      text-shadow: $text-shadow-large;
+      border-bottom: 0 solid $dark-green;
 
       &.c-navigation__active, &:hover, &:active {
-        border-bottom: 5px solid $font-color-inverse;
+        border-bottom-width: 5px;
       }
     }
+  }
+
+  // Inverse colored version for darker backgrounds
+  &.v-inverse li a.c-navigation__link {
+    color: $font-color-inverse;
+    border-bottom-color: $font-color-inverse;
+    text-shadow: $text-shadow-large;
   }
 }

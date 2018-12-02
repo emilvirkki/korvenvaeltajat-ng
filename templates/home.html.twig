@@ -3,7 +3,7 @@
 {% block title %}Etusivu{% endblock %}
 
 {% block content %}
-	{% include 'partials/navigation.html.twig' %}
+	{% include 'partials/navigation.html.twig' with { variant: 'v-inverse' } %}
 	<main id="content">
 		<header class="c-image-header">
 			<h1>{{ snippets.frontPageSlogan }}</h1>
