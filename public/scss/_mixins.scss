@@ -12,16 +12,18 @@
   box-shadow: $box-shadow-large;
 }
 
-@mixin link {
+@mixin link($no-visit-state: false) {
   color: $dark-green;
   text-decoration: none;
   font-weight: bold;
 
-  &:visited {
-    color: darken($orange, 30%); // TODO maybe add this color to vars
+  @if $no-visit-state == false {
+    &:visited {
+      color: darken($orange, 30%); // TODO maybe add this color to vars
 
-    &:hover, &:active {
-      color: $orange;
+      &:hover, &:active {
+        color: $orange;
+      }
     }
   }
 
