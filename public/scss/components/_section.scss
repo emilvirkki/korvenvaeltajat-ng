@@ -1,0 +1,25 @@
+.c-section {
+  h2 {
+    @include font($heading-font, 2);
+    margin: 0 0 1.5*$row 0;
+  }
+
+  &.v-inverse h2 {
+    color: $font-color-inverse;
+    text-shadow: $text-shadow;
+  }
+
+  // Allows content styles
+  &.v-full-content {
+    @include content-styles;
+
+    :first-child {
+      margin-top: 0; // Otherwise there content styles mess up the margins
+    }
+  }
+
+  &__actions {
+    margin-top: 1.5*$row;
+    text-align: center;
+  }
+}
