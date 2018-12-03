@@ -26,18 +26,22 @@ class AppController extends AbstractController
      */
     public function home()
     {
-        $events = $this->getEntries(
-            $this->query('event')
-                ->setLimit(7)
-                ->orderBy('fields.datetimeStart')
-                ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
-        );
+        $events = $this->cached('events.latest', function() {
+            return $this->getEntries(
+                $this->query('event')
+                    ->setLimit(7)
+                    ->orderBy('fields.datetimeStart')
+                    ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
+            );
+        });
 
-        $articles = $this->getEntries(
-            $this->query('article')
-                ->orderBy('-sys.createdAt')
-                ->setLimit(3)
-        );
+        $articles = $this->cached('articles.latest', function() {
+            return $this->getEntries(
+                $this->query('article')
+                    ->orderBy('-sys.createdAt')
+                    ->setLimit(3)
+            );
+        });
 
         return $this->renderTemplate('home', array(
           'articles' => $articles,
@@ -148,19 +152,33 @@ class AppController extends AbstractController
         return $this->render('error.html.twig');
     }
 
+    // Helper functions
+
     private function getSnippets()
     {
-        $entries_short = $this->getEntries($this->query('snippetShort'));
-        $entries_long = $this->getEntries($this->query('snippetLong'));
-        $entries = array_merge($entries_short, $entries_long);
+        return $this->cached('snippets', function() {
+            $entries_short = $this->getEntries($this->query('snippetShort'));
+            $entries_long = $this->getEntries($this->query('snippetLong'));
+            $entries = array_merge($entries_short, $entries_long);
 
-        $snippets = array();
-        foreach ($entries as $entry) {
-            $id = $entry['id'];
-            $snippets[$id] = $entry['content'];
-        }
-        return $snippets;
+            $snippets = array();
+            foreach ($entries as $entry) {
+                $id = $entry['id'];
+                $snippets[$id] = $entry['content'];
+            }
+            return $snippets;
+        });
     }
+
+    private function cached($key, $func)
+    {
+        if(!$this->cache->has($key)) {
+            $this->cache->set($key, $func());
+        }
+        return $this->cache->get($key);
+    }
+
+    // TODO refactor Contentful stuff to service
 
     private function query($content_type)
     {
@@ -197,6 +215,8 @@ class AppController extends AbstractController
         return $this->render("$name.html.twig", $vars);
     }
 
+    // TODO refactor these to service
+
     private function entriesToArray($raw_entries)
     {
         $entries = array();
@@ -206,14 +226,36 @@ class AppController extends AbstractController
         return $entries;
     }
 
-    private function entryToArray($raw_entry)
+    private function entryToArray($entry)
     {
-        $fields = $raw_entry->getContentType()->getFields();
-        $entry = array();
+        $fields = $entry->getContentType()->getFields();
+        $arr = array();
         foreach ($fields as $id => $field) {
-            $entry[$id] = $raw_entry[$id];
+            if ($field->getType() === 'Array') {
+                $arr[$id] = $this->arrayFieldToArray($entry[$id], $field);
+            } else {
+                // Some field types e.g. links will throw an error here - that's fine for now
+                $arr[$id] = strval($entry[$id]);
+            }
         }
-        $entry['created'] = $raw_entry->getSystemProperties()->getCreatedAt();
-        return $entry;
+        $arr['created'] = $entry->getSystemProperties()->getCreatedAt();
+        return $arr;
+    }
+
+    private function arrayFieldToArray($field_values, $field) {
+        $arr = array();
+        foreach ($field_values as $key => $value) {
+            if ($field->getItemsLinkType() === 'Asset') {
+                $arr[$key] = array(
+                    'title' => $value->getTitle(),
+                    'url' => $value->getFile()->getUrl(),
+                    'content_type' => $value->getFile()->getContentType(),
+                );
+            } else {
+                // Other link types will throw error here - that's fine for now
+                $arr[$key] = strval($value);
+            }
+        }
+        return $arr;
     }
 }
