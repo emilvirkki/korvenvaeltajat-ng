@@ -10,8 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 
+use Psr\SimpleCache\CacheInterface;
+
 class AppController extends AbstractController
 {
+    private $cache;
+
+    function __construct(CacheInterface $cache)
+    {
+        $this->cache = $cache;
+    }
+
     /**
      * @Route("/", name="home")
      */

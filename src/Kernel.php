@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 require __DIR__.'/../vendor/autoload.php';
 
@@ -47,6 +48,16 @@ class Kernel extends BaseKernel
                 'exception_controller' => 'App\AppController::error',
             ));
         }
+
+        if ($this->getEnvironment() === 'prod') {
+            $c->register('cache', \Symfony\Component\Cache\Simple\FilesystemCache::class);
+        } else {
+            $c->register('cache', \Symfony\Component\Cache\Simple\ArrayCache::class);
+        }
+
+        $c->register(AppController::class)
+            ->setPublic(true)
+            ->addArgument(new Reference('cache'));
 
         $c->register('twig.extension.text', \Twig\Extensions\TextExtension::class)
             ->setPublic(false)
