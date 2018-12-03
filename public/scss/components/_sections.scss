@@ -5,6 +5,8 @@
   grid-row-gap: 2*$row;
   grid-auto-flow: column;
 
+  // Color variants
+
   &.v-bg-light {
     background: $light-green;
   }
@@ -13,19 +15,17 @@
     background: asset('tree-pattern.svg') $dark-green;
   }
 
-  &.v-one {
+  // Grid variants
+
+  &.v-grid-1col-narrow {
     padding: 2*$row $grid-offset+2*$col;
   }
 
-  &.v-wide-narrow {
+  &.v-grid-2col-7-5 {
     grid-template-columns: 7fr 5fr;
   }
 
-  &.v-3-9 {
-    grid-template-columns: 3fr 9fr;
-  }
-
-  &.v-even {
+  &.v-grid-2col-even {
     grid-template-columns: 1fr 1fr;
   }
 }
