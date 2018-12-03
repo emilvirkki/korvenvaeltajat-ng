@@ -1,5 +1,4 @@
 .c-section-container {
-  background: asset('tree-pattern.svg') $dark-green;
   padding: 2*$row $grid-offset;
   display: grid;
   grid-column-gap: $grid-offset;
@@ -10,8 +9,8 @@
     background: $light-green;
   }
 
-  &.v-no-bg {
-    background: none; // TODO refactor this to default
+  &.v-bg-dark {
+    background: asset('tree-pattern.svg') $dark-green;
   }
 
   &.v-one {
