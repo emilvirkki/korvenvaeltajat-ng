@@ -11,6 +11,7 @@ use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 
 use Psr\SimpleCache\CacheInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class AppController extends AbstractController
 {
@@ -138,6 +139,15 @@ class AppController extends AbstractController
     public function join()
     {
         return $this->renderTemplate('join');
+    }
+
+    /**
+     * @Route("/clear-cache", name="clear_cache")
+     */
+    public function resetCache()
+    {
+        $this->cache->clear();
+        return new Response('Cache cleared');
     }
 
     public function error(
