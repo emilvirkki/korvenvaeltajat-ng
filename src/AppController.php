@@ -56,9 +56,11 @@ class AppController extends AbstractController
     public function articles()
     {
         //TODO Add paging
-        $article = $this->getEntries(
-            $this->query('article')->orderBy('-sys.createdAt')
-        );
+        $article = $this->cached('articles', function() {
+            return $this->getEntries(
+                    $this->query('article')->orderBy('-sys.createdAt')
+            );
+        });
 
         return $this->renderTemplate('articles', array(
           'articles' => $article,
@@ -70,9 +72,11 @@ class AppController extends AbstractController
      */
     public function article($slug)
     {
-        $article = $this->getEntry(
-            $this->query('article')->where('fields.slug', $slug)
-        );
+        $article = $this->cached('articles.'.md5($slug), function() use ($slug) {
+            return $this->getEntry(
+                $this->query('article')->where('fields.slug', $slug)
+            );
+        });
 
         return $this->renderTemplate('article', array(
           'article' => $article,
@@ -84,11 +88,13 @@ class AppController extends AbstractController
      */
     public function events()
     {
-        $events = $this->getEntries(
-            $this->query('event')
-                ->orderBy('fields.datetimeStart')
-                ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
-        );
+        $events = $this->cached('events', function() {
+            return $this->getEntries(
+                $this->query('event')
+                    ->orderBy('fields.datetimeStart')
+                    ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
+            );
+        });
 
         return $this->renderTemplate('events', array(
           'events' => $events,
@@ -100,9 +106,11 @@ class AppController extends AbstractController
      */
     public function event($slug)
     {
-        $event = $this->getEntry(
-            $this->query('event')->where('fields.slug', $slug)
-        );
+        $event = $this->cached('events.'.md5($slug), function() use ($slug) {
+            return $this->getEntry(
+                $this->query('event')->where('fields.slug', $slug)
+            );
+        });
 
         return $this->renderTemplate('event', array(
           'event' => $event,
