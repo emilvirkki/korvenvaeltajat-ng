@@ -4,10 +4,14 @@
 		<p><a href="mailto:info@korvenvaeltajat.net">info@korvenvaeltajat.net</a></p>
 	</div>
 	<nav class="c-footer__links">
-		TODO Links
+		<ul>
+		{% for link in links|slice(0,-1) %}
+			<li><a href="{{ path(link.route) }}">{{ link.title }}</a></li>
+		{% endfor %}
+		</ul>
 	</nav>
 	<div class="c-footer__ctas">
-		<a href="{{ path('join') }}" class="c-button">Liity mukaan</a>
+		<a href="{{ path('join') }}" class="c-button">Liity mukaan!</a>
 		<div class="c-footer__some">
 			<a href="https://www.facebook.com/korvenvaeltajat">Facebook</a>
 			<a href="https://instagram.com/korvenvaeltajat">Instagram</a>

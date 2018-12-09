@@ -8,6 +8,31 @@
 	</head>
 	<body class="{% block body_variant %}{% endblock %}">
 		<a href="#content" class="visually-hidden">Hyppää sisältöön</a>
+		{%
+			set links = [
+				{
+					'title': 'Etusivu',
+					'route': 'home'
+				},
+				{
+					'title': 'Mikä partio?',
+					'route': 'about_scouting'
+				},
+				{
+					'title': 'Lippukunta',
+					'route': 'troop'
+				},
+				{
+					'title': 'Yhteystiedot',
+					'route': 'contact'
+				},
+				{
+					'title': 'Liity mukaan!',
+					'route': 'join',
+					'class': 'c-button'
+				}
+			]
+		%}
 		{% block content %}{% endblock %}
 	</body>
 </html>
