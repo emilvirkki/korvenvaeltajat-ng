@@ -1,7 +1,36 @@
 .c-footer {
   background: $background-color;
+  display: flex;
+  padding: $row $grid-offset+2*$col $row $grid-offset;
+
+  &__info, &__links {
+    a { @include link(true); }
+    flex-grow: 2;
+  }
+
+  &__ctas {
+    float: left;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  &__some a {
+    margin: $row $spacing-xs 0 $spacing-xs;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    text-indent: -99em;
+    background: $orange;
+  }
 
   &.v-dark {
     background: $dark-green;
+    color: $font-color-inverse;
+
+    .c-footer__info, .c-footer__links {
+      a:link, a:visited, a:hover, a:active {
+        color: $font-color-inverse;
+      }
+    }
   }
 }
