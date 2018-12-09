@@ -1,7 +1,12 @@
 .c-footer {
-  background: $background-color;
   display: flex;
-  padding: $row $grid-offset+2*$col $row $grid-offset;
+  padding: $row $grid-offset+2*$col $row $grid-offset+2*$col;
+  background: $background-color;
+
+  &__info {
+    display: block;
+    margin-left: $spacing;
+  }
 
   &__info, &__links {
     a { @include link(true); }
@@ -19,13 +24,14 @@
     display: inline-block;
     width: 48px;
     height: 48px;
-    text-indent: -99em;
+    text-indent: -999em;
     background: $orange;
   }
 
   &.v-dark {
     background: $dark-green;
     color: $font-color-inverse;
+    background: $grid-offset $row no-repeat asset('lpk-logo.png') $dark-green;
 
     .c-footer__info, .c-footer__links {
       a:link, a:visited, a:hover, a:active {
