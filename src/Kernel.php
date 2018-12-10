@@ -55,8 +55,13 @@ class Kernel extends BaseKernel
             $c->register('cache', \Symfony\Component\Cache\Simple\ArrayCache::class);
         }
 
+        $c->register('content', ContentfulContentService::class)
+            ->setPublic(true)
+            ->addArgument(new Reference('contentful.delivery'));
+
         $c->register(AppController::class)
             ->setPublic(true)
+            ->addArgument(new Reference('content'))
             ->addArgument(new Reference('cache'));
 
         $c->register('twig.extension.text', \Twig\Extensions\TextExtension::class)

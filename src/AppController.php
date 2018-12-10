@@ -17,8 +17,9 @@ class AppController extends AbstractController
 {
     private $cache;
 
-    function __construct(CacheInterface $cache)
+    function __construct(ContentService $content, CacheInterface $cache)
     {
+        $this->content = $content;
         $this->cache = $cache;
     }
 
@@ -28,11 +29,19 @@ class AppController extends AbstractController
     public function home()
     {
         $events = $this->cached('events.latest', function() {
+            return $this->content->getAll(array(
+                'content_type' => 'event',
+                'limit' => 7,
+                'order_by' => 'fields.datetimeStart',
+                'where' => array(
+                    array('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
+                )
+            ));
             return $this->getEntries(
                 $this->query('event')
                     ->setLimit(7)
                     ->orderBy('fields.datetimeStart')
-                    ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
+                    ->where()
             );
         });
 
@@ -57,9 +66,10 @@ class AppController extends AbstractController
     {
         //TODO Add paging
         $article = $this->cached('articles', function() {
-            return $this->getEntries(
-                    $this->query('article')->orderBy('-sys.createdAt')
-            );
+            return $this->content->getAll(array(
+                'content_type' => 'article',
+                'order_by' => '-sys.createdAt',
+            ));
         });
 
         return $this->renderTemplate('articles', array(
@@ -73,9 +83,10 @@ class AppController extends AbstractController
     public function article($slug)
     {
         $article = $this->cached('articles.'.md5($slug), function() use ($slug) {
-            return $this->getEntry(
-                $this->query('article')->where('fields.slug', $slug)
-            );
+            return $this->content->getOne(array(
+                'content_type' => 'article',
+                'fields.slug' => $slug,
+            ));
         });
 
         return $this->renderTemplate('article', array(
