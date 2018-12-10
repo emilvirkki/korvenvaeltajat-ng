@@ -1,0 +1,17 @@
+.c-bodytext {
+  width: 6*$col;
+  margin: 2*$row auto;
+  @include content-styles;
+}
+
+.c-meta {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin: $row 0 0;
+}
+
+.c-actions {
+  margin: $row 0 0;
+  text-align: center;
+}

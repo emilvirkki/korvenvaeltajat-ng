@@ -4,12 +4,12 @@
 
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
-	<main id="content" class="c-page-full">
+	<main id="content">
 		<div class="c-text-header">
 			<h1>{{ event.title }}</h1>
 		</div>
 
-		<div class="c-page-full__meta">
+		<div class="c-meta">
 			{% if event.datetimeEnd %}
 				{% include 'partials/date.html.twig' with {
 					date: event.datetimeStart,
@@ -28,12 +28,12 @@
 		</div>
 
 		{% if event.registrationLink %}
-			<div class="c-page-full__actions">
+			<div class="c-actions">
 				<a href="{{ event.registrationLink }}" class="c-button">Ilmoittaudu</a>
 			</div>
 		{% endif %}
 
-		<div class="c-page-full__content">
+		<div class="c-bodytext">
 			{{ event.content|markdown }}
 
 			{% include 'partials/attachments.html.twig' with { attachments: event.attachments } %}
