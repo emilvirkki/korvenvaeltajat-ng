@@ -44,7 +44,7 @@ class ContentfulContentService implements ContentService {
         $entries = $this->getAll($filters);
 
         if (count($entries) === 0) {
-            throw $this->createNotFoundException('Sivua ei löydy');
+            return null;
         }
 
         return $entries[0];

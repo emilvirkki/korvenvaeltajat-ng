@@ -89,6 +89,10 @@ class AppController extends AbstractController
             ));
         });
 
+        if ($article === null) {
+            throw $this->createNotFoundException('Artikkelia ei löydy');
+        }
+
         return $this->renderTemplate('article', array(
           'article' => $article,
         ));
