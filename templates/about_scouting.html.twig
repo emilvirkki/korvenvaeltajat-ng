@@ -5,7 +5,15 @@
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
 	<main id="content">
-		<h1>Mikä partio?</h1>
+		<div class="c-text-header">
+			<h1>Mikä partio?</h1>
+		</div>
+		<div class="c-bodytext">
+			{{ snippets.whatScouting|markdown }}
+		</div>
+		<div class="c-cta">
+			<a href="{{ path('join') }}" class="c-button">Tule mukaan!</a>
+		</div>
 	</main>
-	{% include 'partials/footer.html.twig' %}
+	{% include 'partials/footer.html.twig' with { variant: 'v-dark' } %}
 {% endblock %}
