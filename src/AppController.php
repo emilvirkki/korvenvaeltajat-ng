@@ -4,7 +4,6 @@ namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Contentful\Delivery\Query;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Exception\FlattenException;
@@ -37,20 +36,14 @@ class AppController extends AbstractController
                     array('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
                 )
             ));
-            return $this->getEntries(
-                $this->query('event')
-                    ->setLimit(7)
-                    ->orderBy('fields.datetimeStart')
-                    ->where()
-            );
         });
 
         $articles = $this->cached('articles.latest', function() {
-            return $this->getEntries(
-                $this->query('article')
-                    ->orderBy('-sys.createdAt')
-                    ->setLimit(3)
-            );
+            return $this->content->getAll(array(
+                'content_type' => 'article',
+                'order_by' => '-sys.createdAt',
+                'limit' => 3,
+            ));
         });
 
         return $this->renderTemplate('home', array(
@@ -104,11 +97,13 @@ class AppController extends AbstractController
     public function events()
     {
         $events = $this->cached('events', function() {
-            return $this->getEntries(
-                $this->query('event')
-                    ->orderBy('fields.datetimeStart')
-                    ->where('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
-            );
+            return $this->content->getAll(array(
+                'content_type' => 'event',
+                'order_by' => 'fields.datetimeStart',
+                'where' => array(
+                    array('fields.datetimeStart', new \DateTime('today 00:00'), 'gte'),
+                ),
+            ));
         });
 
         return $this->renderTemplate('events', array(
@@ -122,10 +117,15 @@ class AppController extends AbstractController
     public function event($slug)
     {
         $event = $this->cached('events.'.md5($slug), function() use ($slug) {
-            return $this->getEntry(
-                $this->query('event')->where('fields.slug', $slug)
-            );
+            return $this->content->getOne(array(
+                'content_type' => 'event',
+                'fields.slug' => $slug,
+            ));
         });
+
+        if ($event === null) {
+            throw $this->createNotFoundException('Tapahtumaa ei löydy');
+        }
 
         return $this->renderTemplate('event', array(
           'event' => $event,
@@ -190,8 +190,8 @@ class AppController extends AbstractController
     private function getSnippets()
     {
         return $this->cached('snippets', function() {
-            $entries_short = $this->getEntries($this->query('snippetShort'));
-            $entries_long = $this->getEntries($this->query('snippetLong'));
+            $entries_short = $this->content->getAll(array('content_type' => 'snippetShort'));
+            $entries_long = $this->content->getAll(array('content_type' => 'snippetLong'));
             $entries = array_merge($entries_short, $entries_long);
 
             $snippets = array();
@@ -211,34 +211,6 @@ class AppController extends AbstractController
         return $this->cache->get($key);
     }
 
-    // TODO refactor Contentful stuff to service
-
-    private function query($content_type)
-    {
-        $query = new Query();
-        return $query->setContentType($content_type);
-    }
-
-    private function getEntries($query)
-    {
-        $client = $this->get('contentful.delivery');
-        return $this->entriesToArray(
-            $client->getEntries($query)
-        );
-    }
-
-    private function getEntry($query)
-    {
-        $query->setLimit(1);
-        $entries = $this->getEntries($query);
-
-        if (count($entries) === 0) {
-            throw $this->createNotFoundException('Artikkelia ei löydy');
-        }
-
-        return $entries[0];
-    }
-
     private function renderTemplate($name, $vars = array())
     {
         $vars = array_merge($vars, array(
@@ -246,49 +218,5 @@ class AppController extends AbstractController
             'snippets' => $this->getSnippets(),
         ));
         return $this->render("$name.html.twig", $vars);
-    }
-
-    // TODO refactor these to service
-
-    private function entriesToArray($raw_entries)
-    {
-        $entries = array();
-        foreach ($raw_entries as $raw_entry) {
-            $entries[] = $this->entryToArray($raw_entry);
-        }
-        return $entries;
-    }
-
-    private function entryToArray($entry)
-    {
-        $fields = $entry->getContentType()->getFields();
-        $arr = array();
-        foreach ($fields as $id => $field) {
-            if ($field->getType() === 'Array') {
-                $arr[$id] = $this->arrayFieldToArray($entry[$id], $field);
-            } else {
-                // Some field types e.g. links will throw an error here - that's fine for now
-                $arr[$id] = strval($entry[$id]);
-            }
-        }
-        $arr['created'] = $entry->getSystemProperties()->getCreatedAt();
-        return $arr;
-    }
-
-    private function arrayFieldToArray($field_values, $field) {
-        $arr = array();
-        foreach ($field_values as $key => $value) {
-            if ($field->getItemsLinkType() === 'Asset') {
-                $arr[$key] = array(
-                    'title' => $value->getTitle(),
-                    'url' => $value->getFile()->getUrl(),
-                    'content_type' => $value->getFile()->getContentType(),
-                );
-            } else {
-                // Other link types will throw error here - that's fine for now
-                $arr[$key] = strval($value);
-            }
-        }
-        return $arr;
     }
 }
