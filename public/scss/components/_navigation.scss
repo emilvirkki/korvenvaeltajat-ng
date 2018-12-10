@@ -17,7 +17,8 @@
       text-indent: -99em;
       overflow: hidden;
       // TODO Use SVG once you know what causes the blurriness
-      background: 50% 50% no-repeat asset('lpk-logo.png');
+      background: 50% 45% no-repeat asset('lpk-logo.svg');
+      background-size: 145px auto;
     }
   }
 
