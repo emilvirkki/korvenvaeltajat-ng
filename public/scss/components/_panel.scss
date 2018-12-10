@@ -6,7 +6,7 @@
     @include content-styles;
   }
 
-  h2 {
+  h2, h3 {
     @include font($heading-font, 2);
     margin-bottom: $row;
   }
@@ -17,5 +17,22 @@
 
   &.v-centered {
     text-align: center;
+  }
+
+  &.v-image {
+    padding: 0 0 $spacing-l 0;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    h2, h3 {
+      margin: $spacing-l $spacing-l $row;
+    }
+
+    .c-panel__content {
+      margin: 0 $spacing-l;
+    }
   }
 }

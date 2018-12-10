@@ -5,7 +5,46 @@
 {% block content %}
 	{% include 'partials/navigation.html.twig' %}
 	<main id="content">
-		<h1>Lippukunta</h1>
+		<section>
+			<div class="c-text-header">
+				<h1>Lippukunta</h1>
+			</div>
+
+			<div class="c-intro">
+				{{ snippets.troopIntro|markdown }}
+			</div>
+
+			<div class="c-bodytext">
+				{{ snippets.troopGeneral|markdown }}
+			</div>
+		</section>
+
+		<section class="c-grid-container v-intro-2col v-bg-dark">
+			<div class="c-section-header v-inverse">
+				<h2>Täällä toimimme</h2>
+				{{ snippets.troopLocationsIntro|markdown }}
+			</div>
+			<div class="c-panel v-image">
+				<img src="https://placekitten.com/800/400" alt="">
+				<h3>Kolo</h3>
+				<div class="c-panel__content">{{ snippets.troopMeetingPlace|markdown }}</div>
+			</div>
+			<div class="c-panel v-image">
+				<img src="https://placekitten.com/800/400" alt="">
+				<h3>Kämppä</h3>
+				<div class="c-panel__content">{{ snippets.troopCabin|markdown }}</div>
+			</div>
+		</section>
+
+		<div class="c-grid-container v-grid-1col-narrow v-bg-light">
+			<div class="c-section-header">
+				<h2>Historiaa</h2>
+			</div>
+			<div class="c-section v-full-content">
+				{{ snippets.troopHistory|markdown }}
+			</div>
+		</div>
+
 	</main>
-	{% include 'partials/footer.html.twig' %}
+	{% include 'partials/footer.html.twig' with { variant: 'v-dark' } %}
 {% endblock %}

@@ -5,7 +5,7 @@
   background: 50% 50% no-repeat asset('header-image-1x.jpg');
   background-size: cover;
 
-  h1 {
+  h1, h2 {
     @include font($heading-font, 3);
     line-height: 1.2;
     color: $font-color-inverse;
@@ -21,11 +21,27 @@
     margin-bottom: 2*$row;
   }
 
-  h1 {
+  h1, h2 {
     @include font($heading-font, 3);
     line-height: 2.5*$line-height;
     width: 8*$col;
     margin: 0 auto;
     text-align: center;
+  }
+}
+
+.c-section-header {
+  width: 8*$col;
+  margin: 0 auto;
+  text-align: center;
+
+  &.v-inverse {
+    color: $font-color-inverse;
+  }
+
+  h1, h2 {
+    @include font($heading-font, 3);
+    line-height: 2.5*$line-height;
+    margin-bottom: $row;
   }
 }

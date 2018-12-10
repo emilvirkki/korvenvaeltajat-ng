@@ -23,4 +23,9 @@
     padding-top: $row;
     padding-bottom: 4*$row;
   }
+
+  &.v-content-page {
+    padding-top: 2*$row;
+    padding-bottom: 0;
+  }
 }

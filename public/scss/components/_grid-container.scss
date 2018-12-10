@@ -19,6 +19,7 @@
 
   &.v-grid-1col-narrow {
     padding: 2*$row $grid-offset+2*$col;
+    grid-auto-flow: row;
   }
 
   &.v-grid-2col-7-5 {
@@ -27,5 +28,14 @@
 
   &.v-grid-2col-even {
     grid-template-columns: 1fr 1fr;
+  }
+
+  &.v-intro-2col {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "intro intro"
+      "col1 col2";
+
+    >:nth-child(1) { grid-area: intro; }
   }
 }
