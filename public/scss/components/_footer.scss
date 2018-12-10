@@ -1,7 +1,7 @@
 .c-footer {
   display: flex;
-  padding: $row $grid-offset+2*$col $row $grid-offset+2*$col;
-  background: $background-color;
+  padding: 2*$row $grid-offset 2*$row $grid-offset+2*$col;
+  background: $grid-offset 2*$row no-repeat asset('lpk-logo-blue.svg') $background-color;
 
   &__info {
     display: block;
@@ -14,16 +14,15 @@
   }
 
   &__ctas {
-    float: left;
     flex-grow: 1;
-    text-align: center;
+    text-align: right;
   }
 
   &__some a {
-    margin: $row $spacing-s 0 0;
+    margin: 0 $spacing-s 0 0;
     display: inline-block;
-    width: 48px;
-    height: 48px;
+    width: 2*$row;
+    height: 2*$row;
     text-indent: -999em;
     background: 50% 50% no-repeat;
     background-size: cover;
@@ -42,9 +41,9 @@
   }
 
   &.v-dark {
-    background: $dark-green;
     color: $font-color-inverse;
-    background: $grid-offset $row no-repeat asset('lpk-logo.png') $dark-green;
+    background-color: $dark-green;
+    background-image: asset('lpk-logo.svg');
 
     .c-footer__info, .c-footer__links {
       a:link, a:visited, a:hover, a:active {
