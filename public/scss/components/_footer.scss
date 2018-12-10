@@ -40,27 +40,7 @@
     }
   }
 
-  &.v-dark {
-    color: $font-color-inverse;
-    background-color: $dark-green;
-    background-image: asset('lpk-logo.svg');
-
-    .c-footer__info, .c-footer__links {
-      a:link, a:visited, a:hover, a:active {
-        color: $font-color-inverse;
-      }
-
-      a:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .c-footer__some .facebook {
-      background-image: asset('icon-facebook-inverse.svg');
-    }
-
-    .c-footer__some .instagram {
-      background-image: asset('icon-instagram-inverse.svg');
-    }
+  &.v-colored {
+    background-color: $light-green;
   }
 }
