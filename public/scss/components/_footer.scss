@@ -20,12 +20,25 @@
   }
 
   &__some a {
-    margin: $row $spacing-xs 0 $spacing-xs;
+    margin: $row $spacing-s 0 0;
     display: inline-block;
     width: 48px;
     height: 48px;
     text-indent: -999em;
-    background: $orange;
+    background: 50% 50% no-repeat;
+    background-size: cover;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &.facebook {
+      background-image: asset('icon-facebook.svg');
+    }
+
+    &.instagram {
+      background-image: asset('icon-instagram.svg');
+    }
   }
 
   &.v-dark {
@@ -37,6 +50,18 @@
       a:link, a:visited, a:hover, a:active {
         color: $font-color-inverse;
       }
+
+      a:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .c-footer__some .facebook {
+      background-image: asset('icon-facebook-inverse.svg');
+    }
+
+    .c-footer__some .instagram {
+      background-image: asset('icon-instagram-inverse.svg');
     }
   }
 }
