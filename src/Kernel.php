@@ -38,6 +38,7 @@ class Kernel extends BaseKernel
                 'space' => getenv('CONTENTFUL_SPACE'),
                 'token' => getenv('CONTENTFUL_TOKEN'),
                 'environment' => getenv('CONTENTFUL_ENV'),
+                'cache' => true,
             )
         ));
 
