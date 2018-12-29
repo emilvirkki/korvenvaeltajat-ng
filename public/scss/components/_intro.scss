@@ -4,6 +4,8 @@
   line-height: 1.4;
   text-align: center;
 
+  a { @include link(true); }
+
   &__secondary {
     margin-top: $row;
     @include font($body-font, 0);
