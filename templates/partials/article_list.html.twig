@@ -4,7 +4,11 @@
 		{% set link = path('article', { slug: article.slug }) %}
 
 		<span class="c-article__date">
-			{% include 'partials/date.html.twig' with { date: article.created } %}
+			{% if article.createdOverride %}
+				{% include 'partials/date.html.twig' with { date: article.createdOverride } %}
+			{% else %}
+				{% include 'partials/date.html.twig' with { date: article.created } %}
+			{% endif %}
 		</span>
 		<h3><a href="{{ link }}">{{ article.title }}</a></h3>
 		{{ article.content|markdown|striptags|truncate(300, true) }}

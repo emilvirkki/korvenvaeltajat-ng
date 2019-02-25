@@ -12,7 +12,9 @@
 		<span class="c-meta">
 			{% if article.authorName %}
 				{{ article.authorName }}
-				{% include 'partials/date.html.twig' with { date: article.created } %}
+			{% endif %}
+			{% if article.createdOverride %}
+				{% include 'partials/date.html.twig' with { date: article.createdOverride } %}
 			{% else %}
 				{% include 'partials/date.html.twig' with { date: article.created } %}
 			{% endif %}
