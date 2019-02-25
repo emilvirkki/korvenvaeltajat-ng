@@ -33,11 +33,16 @@
 			<section class="c-section v-inverse">
 				<h2>Tapahtumat</h2>
 
-				{% include 'partials/event_list.html.twig' %}
-
-				<div class="c-section__actions">
-					<a href="{{ path('events') }}" class="c-button">Kaikki tapahtumat</a>
-				</div>
+				{% if events %}
+					{% include 'partials/event_list.html.twig' %}
+					<div class="c-section__actions">
+						<a href="{{ path('events') }}" class="c-button">Kaikki tapahtumat</a>
+					</div>
+				{% else %}
+					<div class="c-panel v-centered">
+						Ei tapahtumia lähiaikoina.
+					</div>
+				{% endif %}
 			</section>
 		</div>
 	</main>

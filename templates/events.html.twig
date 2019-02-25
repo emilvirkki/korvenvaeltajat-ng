@@ -10,9 +10,17 @@
 		<div class="c-text-header">
 			<h1>Tapahtumat</h1>
 		</div>
-		<div class="c-grid-container v-grid-1col-narrow">
-			{% include 'partials/event_list.html.twig' %}
-		</div>
+		{% if events %}
+			<div class="c-grid-container v-grid-1col-narrow">
+				{% include 'partials/event_list.html.twig' %}
+			</div>
+		{% else %}
+			<div class="c-intro v-bind-up">
+				<div class="c-intro__content">
+					Ei tapahtumia lähiaikoina.
+				</div>
+			</div>
+		{% endif %}
 	</main>
 	{% include 'partials/footer.html.twig' %}
 {% endblock %}
