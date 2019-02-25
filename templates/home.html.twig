@@ -10,7 +10,9 @@
 		</header>
 
 		<div class="c-intro">
-			{{ snippets.frontPageIntro|markdown }}
+			<div class="c-intro__content">
+				{{ snippets.frontPageIntro|markdown }}
+			</div>
 			<div class="c-intro__cta">
 				<a href="{{ path('join') }}" class="c-button">Liity mukaan!</a>
 			</div>
