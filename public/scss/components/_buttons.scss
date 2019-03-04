@@ -4,6 +4,9 @@
   line-height: 2*$line-height;
   border-radius: $line-height;
   padding: 0 $spacing;
+  border: none;
+  outline: 0;
+  cursor: pointer;
 
   background: $orange;
   text-decoration: none;

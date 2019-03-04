@@ -51,4 +51,73 @@
     border-bottom-color: $font-color-inverse;
     text-shadow: $text-shadow-large;
   }
+
+  .js-navbar-toggle {
+    display: none;
+  }
+
+  @include max-width(xsmall) {
+    background: $dark-green;
+    text-align: center;
+    position: static;
+    min-height: 4*$row;
+
+    h1 {
+      box-shadow: none;
+      width: 130px;
+
+      a {
+        background: 50% 50% no-repeat asset('lpk-logo.svg');
+        background-size: 130px auto;
+      }
+    }
+
+    .js-navbar-toggle {
+      display: inline-block;
+      float: right;
+      margin-top: $row;
+
+      padding-right: 2.3*$spacing;
+      padding-left: $spacing;
+      background-position: 75% 50%;
+      background-repeat: no-repeat;
+      background-image: asset('icon-close.svg');
+    }
+
+    &.s-mobile-closed .js-navbar-toggle {
+      padding-left: 2.3*$spacing;
+      padding-right: $spacing;
+      background-position: $spacing 50%;
+      background-repeat: no-repeat;
+      background-image: asset('icon-menu.svg');
+    }
+
+    &.s-mobile-closed ul {
+      position: absolute;
+      overflow: hidden;
+      width: 0px;
+      height: 0px;
+    }
+
+    ul, li {
+      float: none;
+      text-align: center;
+      margin: 0;
+    }
+
+    ul {
+      clear: both;
+      padding: $row 0 2*$row;
+    }
+
+    ul a.c-navigation__link {
+      text-shadow: none !important;
+      border-bottom-color: $font-color-inverse;
+      color: $font-color-inverse;
+    }
+
+    ul .c-button {
+      margin-top: $spacing;
+    }
+  }
 }
