@@ -1,7 +1,10 @@
 .c-footer {
   display: flex;
-  padding: 2*$row $grid-offset 2*$row $grid-offset+2*$col;
-  background: $grid-offset 2*$row no-repeat asset('lpk-logo-blue.svg') $background-color;
+  padding: 2*$row $grid-offset;
+
+  &::before {
+    content: asset('lpk-logo-blue.svg');
+  }
 
   &__info {
     display: block;
@@ -42,5 +45,28 @@
 
   &.v-colored {
     background-color: $light-green;
+  }
+
+  @include max-width(small) {
+    display: block;
+    text-align: center;
+
+    &__info {
+      margin: $row auto;
+    }
+
+    &__links {
+      li, a { display: inline-block;  }
+      a { padding: $spacing-s; }
+    }
+
+    &__some a {
+      margin: $row $spacing-s;
+    }
+
+    &__ctas {
+      text-align: center;
+      margin-top: $spacing;
+    }
   }
 }

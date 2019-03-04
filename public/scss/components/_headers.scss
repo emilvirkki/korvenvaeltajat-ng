@@ -27,6 +27,14 @@
     width: 8*$col;
     margin: 0 auto;
     text-align: center;
+
+    @include max-width(small) {
+      width: 12*$col;
+    }
+  }
+
+  @include max-width(small) {
+    margin-bottom: 0 !important;
   }
 }
 
@@ -43,5 +51,9 @@
     @include font($heading-font, 3);
     line-height: 2.5*$line-height;
     margin-bottom: $row;
+  }
+
+  @include max-width(xsmall) {
+    width: 12*$col;
   }
 }

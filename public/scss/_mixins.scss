@@ -1,3 +1,15 @@
+$breakpoints: (
+  xxsmall: 360px,
+  xsmall: 720px,
+  small: 850px,
+  medium: 1050px,
+  large: 1400px,
+);
+
+@mixin max-width($breakpoint) {
+  @media (max-width: #{map-get($breakpoints, $breakpoint)}) { @content ; }
+}
+
 @mixin font($family, $size_n) {
   font-size: font-scale($size_n);
   font-family: $family;

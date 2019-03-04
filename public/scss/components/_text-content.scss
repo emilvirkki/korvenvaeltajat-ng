@@ -2,6 +2,18 @@
   width: 6*$col;
   margin: 2*$row auto;
   @include content-styles;
+
+  @include max-width(medium) {
+    width: 8*$col;
+  }
+
+  @include max-width(small) {
+    width: 10*$col;
+  }
+
+  @include max-width(xsmall) {
+    width: 12*$col;
+  }
 }
 
 .c-meta {

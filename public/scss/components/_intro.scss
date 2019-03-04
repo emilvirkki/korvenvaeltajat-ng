@@ -32,4 +32,10 @@
     padding-top: 2*$row;
     padding-bottom: 0;
   }
+
+  @include max-width(small) {
+    padding-left: $grid-offset;
+    padding-right: $grid-offset;
+    padding-bottom: 2*$row !important;
+  }
 }

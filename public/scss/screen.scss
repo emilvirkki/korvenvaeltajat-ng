@@ -1,7 +1,12 @@
 @import 'variables';
+@import 'mixins';
 
 html {
   font-size: $font-size;
+}
+
+@include max-width(medium) {
+  html { font-size: $font-size-small }
 }
 
 body {
