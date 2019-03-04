@@ -20,6 +20,11 @@
     text-align: center;
   }
 
+  &.v-empty {
+    @include font($heading-font, 1);
+    color: $grey;
+  }
+
   &.v-image {
     padding: 0 0 $spacing-l 0;
 
