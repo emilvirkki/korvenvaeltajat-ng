@@ -72,6 +72,11 @@
     margin-bottom: $row;
   }
 
+  // In case this is in a grid -> there's already some margin
+  >:last-child {
+    margin-bottom: 0;
+  }
+
   @include max-width(xsmall) {
     width: 12*$col;
   }

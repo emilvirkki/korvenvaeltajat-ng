@@ -28,6 +28,10 @@
     padding-bottom: 4*$row;
   }
 
+  &.v-bind-down {
+    padding-bottom: $row;
+  }
+
   &.v-content-page {
     padding-top: 2*$row;
     padding-bottom: 0;
