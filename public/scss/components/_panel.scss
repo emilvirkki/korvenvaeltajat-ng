@@ -42,4 +42,22 @@
       margin: 0 $spacing-l;
     }
   }
+
+  @include max-width(xxsmall) {
+    padding: $spacing-l $spacing;
+  }
+
+  @include max-width(xxsmall) {
+    &.v-image {
+      padding: 0 0 $spacing 0;
+
+      h2, h3 {
+        margin: $spacing $spacing $row;
+      }
+
+      .c-panel__content {
+        margin: 0 $spacing;
+      }
+    }
+  }
 }
