@@ -1,6 +1,7 @@
 .c-footer {
   display: flex;
   padding: 2*$row $grid-offset;
+  background: $background-color;
 
   &::before {
     content: asset('lpk-logo-blue.svg');
