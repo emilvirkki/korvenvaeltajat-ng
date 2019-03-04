@@ -12,6 +12,24 @@
     padding: 9*$row 2*$col 0 4.5*$col; // Intentionally a half-col: looks better
     text-shadow: $text-shadow-large;
   }
+
+  @include max-width(small) {
+    background-position: 40% 50%;
+  }
+
+  @include max-width(xsmall) {
+    background-position: 30% 50%;
+  }
+
+  @include max-width(xsmall) {
+    background-position: 15% 100%;
+    height: auto;
+
+    h1, h2 {
+      padding: 12*$row $row 2*$row;
+      text-align: center;
+    }
+  }
 }
 
 .c-text-header {
@@ -33,8 +51,9 @@
     }
   }
 
-  @include max-width(small) {
+  @include max-width(xsmall) {
     margin-bottom: 0 !important;
+    padding-top: 3*$row;
   }
 }
 
