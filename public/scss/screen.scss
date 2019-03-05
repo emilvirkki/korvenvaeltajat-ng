@@ -3,6 +3,7 @@
 
 html {
   font-size: $font-size;
+  font-display: swap;
 }
 
 @include max-width(medium) {
