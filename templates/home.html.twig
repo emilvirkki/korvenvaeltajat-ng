@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Etusivu{% endblock %}
+{% block title %}{{ snippets.frontPageSlogan }}{% endblock %}
 
 {% block content %}
 	{% include 'partials/navigation.html.twig' with { variant: 'v-inverse' } %}
