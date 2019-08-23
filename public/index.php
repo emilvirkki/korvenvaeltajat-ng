@@ -9,6 +9,8 @@ $loader = require __DIR__.'/../vendor/autoload.php';
 // auto-load annotations
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
+date_default_timezone_set("Europe/Helsinki");
+
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__.'/../.env');
 

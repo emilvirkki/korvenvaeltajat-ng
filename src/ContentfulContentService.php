@@ -66,6 +66,14 @@ class ContentfulContentService implements ContentService {
         foreach ($fields as $id => $field) {
             if ($field->getType() === 'Array') {
                 $arr[$id] = $this->arrayFieldToArray($entry[$id], $field);
+            } else if ($field->getType() === 'Date' && $entry[$id]->getTimezone()->getName() === 'UTC') {
+                // This is a terrible hack - Contentful treats dates with no timezone
+                // as UTC -> need to manually correct them to local timezone. Of course,
+                // this hack mean that we can't deal with UTC dates anywhere...
+                $tz_offset = date('Z'); // timezone offset from UTC
+                $original_timestamp = $entry[$id]->getTimestamp();
+                $fixed_timestamp = $original_timestamp - $tz_offset;
+                $arr[$id] = new \DateTimeImmutable("@$fixed_timestamp");
             } else {
                 // Some field types e.g. links will throw an error here - that's fine for now
                 $arr[$id] = strval($entry[$id]);
