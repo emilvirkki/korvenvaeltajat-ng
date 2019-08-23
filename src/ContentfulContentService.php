@@ -66,7 +66,7 @@ class ContentfulContentService implements ContentService {
         foreach ($fields as $id => $field) {
             if ($field->getType() === 'Array') {
                 $arr[$id] = $this->arrayFieldToArray($entry[$id], $field);
-            } else if ($field->getType() === 'Date' && $entry[$id]->getTimezone()->getName() === 'UTC') {
+            } else if ($this->isUTCDateTime($field, $entry[$id])) {
                 // This is a terrible hack - Contentful treats dates with no timezone
                 // as UTC -> need to manually correct them to local timezone. Of course,
                 // this hack mean that we can't deal with UTC dates anywhere...
@@ -98,6 +98,12 @@ class ContentfulContentService implements ContentService {
             }
         }
         return $arr;
+    }
+
+    private function isUTCDateTime($field_type, $field_instance) {
+        return $field_type->getType() === 'Date'
+            && $field_instance
+            && $field_instance->getTimezone()->getName() === 'UTC';
     }
 
 }
