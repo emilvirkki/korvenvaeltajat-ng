@@ -18,19 +18,9 @@
 			</div>
 		</div>
 
-		<div class="c-grid-container v-bg-dark v-grid-2col-7-5">
+		<div class="c-grid-container v-bg-dark v-grid-2col-7-5 v-order-reverse">
 
-			<section class="c-section v-inverse">
-				<h2>Ajankohtaista</h2>
-
-				{% include 'partials/article_list.html.twig' %}
-
-				<div class="c-section__actions">
-					<a href="{{ path('articles') }}" class="c-button">Näytä lisää</a>
-				</div>
-			</section>
-
-			<section class="c-section v-inverse">
+			<section class="c-section v-inverse c-grid-container__second">
 				<h2>Tapahtumat</h2>
 
 				{% if events %}
@@ -44,6 +34,17 @@
 					</div>
 				{% endif %}
 			</section>
+
+			<section class="c-section v-inverse c-grid-container__first">
+				<h2>Ajankohtaista</h2>
+
+				{% include 'partials/article_list.html.twig' %}
+
+				<div class="c-section__actions">
+					<a href="{{ path('articles') }}" class="c-button">Näytä lisää</a>
+				</div>
+			</section>
+
 		</div>
 	</main>
 	{% include 'partials/footer.html.twig' %}

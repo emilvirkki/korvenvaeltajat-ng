@@ -39,10 +39,15 @@
     >:nth-child(1) { grid-area: intro; }
   }
 
+  &__first { order: 1; }
+  &__second { order: 2; }
+  &__third { order: 3; }
+
   @include max-width(small) {
     grid-template-columns: 1fr !important;
     grid-auto-flow: row !important;
     padding: 2*$row $grid-offset 2*$row !important;
     grid-template-areas: "intro" !important;
+    &>*{ order: inherit !important; }
   }
 }
