@@ -9,14 +9,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 
-use Psr\SimpleCache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
+
 use Symfony\Component\HttpFoundation\Response;
 
 class AppController extends AbstractController
 {
     private $cache;
 
-    function __construct(ContentService $content, CacheInterface $cache)
+    function __construct(ContentService $content, $cache)
     {
         $this->content = $content;
         $this->cache = $cache;
@@ -205,10 +206,7 @@ class AppController extends AbstractController
 
     private function cached($key, $func)
     {
-        if(!$this->cache->has($key)) {
-            $this->cache->set($key, $func());
-        }
-        return $this->cache->get($key);
+        return $this->cache->get($key, $func);
     }
 
     private function renderTemplate($name, $vars = array())

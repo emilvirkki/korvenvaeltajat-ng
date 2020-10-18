@@ -44,16 +44,17 @@ class Kernel extends BaseKernel
 
         // Use custom controller action to show errors, since we still need
         // to load e.g. snippets on 404 pages (prod only, in dev we want to see error info)
-        if (!$this->isDebug()) {
-            $c->loadFromExtension('twig', array(
-                'exception_controller' => 'App\AppController::error',
+        // FIXME: the custom error pages are not triggered currently
+        if (!$this->debug) {
+            $c->loadFromExtension('framework', array(
+                'error_controller' => 'App\AppController::error',
             ));
         }
 
         if ($this->getEnvironment() === 'prod') {
-            $c->register('cache', \Symfony\Component\Cache\Simple\FilesystemCache::class);
+            $c->register('cache', \Symfony\Component\Cache\Adapter\FilesystemAdapter::class);
         } else {
-            $c->register('cache', \Symfony\Component\Cache\Simple\ArrayCache::class);
+            $c->register('cache', \Symfony\Component\Cache\Adapter\ArrayAdapter::class);
         }
 
         $c->register('content', ContentfulContentService::class)
