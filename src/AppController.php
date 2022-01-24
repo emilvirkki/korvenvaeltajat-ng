@@ -34,7 +34,7 @@ class AppController extends AbstractController
                 'limit' => 7,
                 'order_by' => 'fields.datetimeStart',
                 'where' => array(
-                    array('fields.datetimeStart', new \DateTime('today 00:00'), 'gte')
+                    array('fields.datetimeStart[gte]', new \DateTime('today 00:00'))
                 )
             ));
         });
@@ -102,7 +102,7 @@ class AppController extends AbstractController
                 'content_type' => 'event',
                 'order_by' => 'fields.datetimeStart',
                 'where' => array(
-                    array('fields.datetimeStart', new \DateTime('today 00:00'), 'gte'),
+                    array('fields.datetimeStart[gte]', new \DateTime('today 00:00')),
                 ),
             ));
         });
