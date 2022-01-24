@@ -14,7 +14,7 @@ date_default_timezone_set("Europe/Helsinki");
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__.'/../.env');
 
-$kernel = new Kernel(getenv('APP_ENV'), getenv('APP_DEBUG'));
+$kernel = new Kernel($_ENV['APP_ENV'], $_ENV['APP_DEBUG']);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

@@ -4,7 +4,7 @@
 		<ul>
 		{% for attachment in attachments %}
 			<li>
-				<a href="{{ attachment.url }}" type="{{ attachment.contentType }}">{{ attachment.title }}</a>
+				<a href="{{ attachment.url }}" type="{{ attachment.content_type }}">{{ attachment.title }}</a>
 			</li>
 		{% endfor %}
 		</ul>

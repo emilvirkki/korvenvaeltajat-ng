@@ -1,4 +1,4 @@
-{% if withTime %}
+{% if withTime|default(false) %}
  	{% set format = 'd.m.Y H:i' %}
 {% else %}
 	{% set format = 'd.m.Y' %}

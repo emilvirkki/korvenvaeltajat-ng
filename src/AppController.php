@@ -17,7 +17,7 @@ class AppController extends AbstractController
 {
     private $cache;
 
-    function __construct(ContentService $content, $cache)
+    function __construct(ContentService $content, \Psr\Cache\CacheItemPoolInterface $cache)
     {
         $this->content = $content;
         $this->cache = $cache;

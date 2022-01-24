@@ -3,6 +3,7 @@
 namespace App;
 
 use Contentful\Delivery\Query;
+use Contentful\Delivery\Client;
 
 class ContentfulContentService implements ContentService {
     private $client;
@@ -12,7 +13,7 @@ class ContentfulContentService implements ContentService {
         'order_by' => 'orderBy',
     );
 
-    function __construct($client) {
+    function __construct(Client $client) {
         $this->client = $client;
     }
 
