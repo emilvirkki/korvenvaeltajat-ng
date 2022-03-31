@@ -55,7 +55,7 @@ main {
 // Helpers
 
 @function asset($path) {
-  @return url('/assets/' + $path);
+  @return url('/assets/images/' + $path);
 }
 
 // Mixins
