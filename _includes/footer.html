@@ -5,9 +5,12 @@
 	</div>
 	<nav class="c-footer__links">
 		<ul>
-		{% for link in links|slice(0,-1) %}
-			<li><a href="{{ path(link.route) }}">{{ link.title }}</a></li>
-		{% endfor %}
+			{% assign nav_items = site.pages | where: "nav.include", true | sort: "nav.weight" %}
+			{% for link in nav_items %}
+				{% unless link.nav.exclude_footer %}
+					<li><a href="{{ link.url }}">{{ link.nav.title }}</a></li>
+				{% endunless %}
+			{% endfor %}
 		</ul>
 	</nav>
 	<div class="c-footer__some">
