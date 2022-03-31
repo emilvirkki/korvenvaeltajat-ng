@@ -41,7 +41,8 @@ nav:
         <section class="c-section v-inverse c-grid-container__first">
             <h2>Ajankohtaista</h2>
 
-            {% include article_list.html %}
+            {% assign articles = site.articles | sort: "created" | reverse %}
+            {% include article_list.html articles=articles limit=3 %}
 
             <div class="c-section__actions">
                 <a href="{{ path('articles') }}" class="c-button">Näytä lisää</a>

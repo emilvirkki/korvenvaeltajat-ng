@@ -1,1 +1,17 @@
-TODO: Add this partial
+<ul class="c-article-list">
+    {% for article in include.articles limit: include.limit %}
+        <li class="c-article">
+            {% assign link = "/ajankohtaista/" | append: article.slug %}
+    
+            <span class="c-article__date">
+                {% include date.html date=article.created %}
+            </span>
+            <h3><a href="{{ link }}">{{ article.title }}</a></h3>
+            <!-- |markdown|striptags|truncate(300, true) -->
+            {{ article.content | markdownify | strip_html | truncatewords: 35 }}
+            <div class="c-article__actions">
+                <a href="{{ link }}" class="c-button v-small">Lue lisää</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
