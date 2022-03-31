@@ -1,0 +1,7 @@
+title: "Korven Vaeltajat – Joutsenolaista alkuvoimaa" # the name of your site, e.g. ACME Corp.
+permalink: /:slug
+exclude:
+  - .env
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
