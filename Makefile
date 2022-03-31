@@ -1,6 +1,7 @@
 build: clean
 	bundle exec jekyll build
 clean:
+	rm -rf _events
 	bundle exec jekyll clean
 serve:
 	bundle exec jekyll serve --livereload --trace
