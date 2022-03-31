@@ -1,6 +1,8 @@
 require 'contentful'
 require 'yaml'
 
+EVENTS_DIR = '_events'
+
 def write_entry(path, front_matter, content)
     puts "**********"
     puts "Writing #{path}:"
@@ -30,8 +32,7 @@ client = Contentful::Client.new(
   access_token: ENV['CONTENTFUL_TOKEN']
 )
 
-# TODO ensure collection directories (_events etc.) exist
-
+Dir.mkdir(EVENTS_DIR) unless File.exists?(EVENTS_DIR)
 client.entries(content_type: 'event').each do |event|
     puts event.fields
     front_matter = {
@@ -44,6 +45,5 @@ client.entries(content_type: 'event').each do |event|
         "kuksa_id" => event.fields[:kuksa_id],
     }
     content = event.fields[:content]
-    # FIXME use slug instead
-    write_entry("_events/#{event.fields[:slug]}.md", front_matter, content)
+    write_entry("#{EVENTS_DIR}/#{event.fields[:slug]}.md", front_matter, content)
 end
