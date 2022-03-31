@@ -2,6 +2,7 @@ require 'contentful'
 require 'yaml'
 
 EVENTS_DIR = '_events'
+ARTICLES_DIR = '_articles'
 
 def write_entry(path, front_matter, content)
     puts "**********"
@@ -46,4 +47,18 @@ client.entries(content_type: 'event').each do |event|
     }
     content = event.fields[:content]
     write_entry("#{EVENTS_DIR}/#{event.fields[:slug]}.md", front_matter, content)
+end
+
+Dir.mkdir(ARTICLES_DIR) unless File.exists?(ARTICLES_DIR)
+client.entries(content_type: 'article').each do |article|
+    puts article.fields
+    front_matter = {
+        "title" => article.fields[:title],
+        "slug" => article.fields[:slug],
+        "author_name" => article.fields[:author_name],
+        "created" => article.fields[:created_override] || article.created_at.to_s,
+        "attachments" => assets_to_hash(article.fields[:attachments]),
+    }
+    content = article.fields[:content]
+    write_entry("#{ARTICLES_DIR}/#{article.fields[:slug]}.md", front_matter, content)
 end
