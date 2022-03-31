@@ -1,5 +1,5 @@
-<header class="c-navigation {{ variant }}">
-	<h1><a href="{{ path('home') }}">Korven Vaeltajat</a></h1>
+<header class="c-navigation {{ include.variant }}">
+	<h1><a href="/">Korven Vaeltajat</a></h1>
 	<ul>
 		{% assign nav_items = site.pages | where: "nav.include", true | sort: "nav.weight" %}
 		{% for link in nav_items %}
