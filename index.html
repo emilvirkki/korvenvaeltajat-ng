@@ -9,12 +9,12 @@ nav:
 {% include navigation.html variant='v-inverse' %}
 <main id="content">
     <header class="c-image-header">
-        <h1>{{ snippets.frontPageSlogan }}</h1>
+        <h1>{{ site.data.snippets.frontPageSlogan }}</h1>
     </header>
 
     <div class="c-intro">
         <div class="c-intro__content">
-            {{ snippets.frontPageIntro|markdown }}
+            {{ site.data.snippets.frontPageIntro|markdown }}
         </div>
         <div class="c-intro__cta">
             <a href="{{ path('join') }}" class="c-button">Liity mukaan!</a>
@@ -41,6 +41,7 @@ nav:
         <section class="c-section v-inverse c-grid-container__first">
             <h2>Ajankohtaista</h2>
 
+            XXX% include 'partials/article_list.html.twig' %XXX
 
             <div class="c-section__actions">
                 <a href="{{ path('articles') }}" class="c-button">Näytä lisää</a>
