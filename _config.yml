@@ -1,5 +1,7 @@
 title: "Korven Vaeltajat – Joutsenolaista alkuvoimaa" # the name of your site, e.g. ACME Corp.
 permalink: /:slug
+collections:
+  - articles
 exclude:
   - .env
   - Makefile
