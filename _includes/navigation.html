@@ -1,0 +1,11 @@
+<header class="c-navigation {{ variant }}">
+	<h1><a href="{{ path('home') }}">Korven Vaeltajat</a></h1>
+	<ul>
+		{% assign nav_items = site.pages | where: "nav.include", true | sort: "nav.weight" %}
+		{% for link in nav_items %}
+			<li class="navigation__item"><a
+				href="{{ link.url }}"
+				class="{{ link.nav.custom_class | default: "c-navigation__link" }}{% if link.url == page.url %} c-navigation__active{% endif %}">{{ link.nav.title }}</a></li>
+		{% endfor %}
+	</ul>
+</header>
