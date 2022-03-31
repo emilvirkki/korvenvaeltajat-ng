@@ -3,6 +3,7 @@ require 'yaml'
 
 EVENTS_DIR = '_events'
 ARTICLES_DIR = '_articles'
+DATA_DIR = '_data'
 
 def write_entry(path, front_matter, content)
     puts "**********"
@@ -61,4 +62,12 @@ client.entries(content_type: 'article').each do |article|
     }
     content = article.fields[:content]
     write_entry("#{ARTICLES_DIR}/#{article.fields[:slug]}.md", front_matter, content)
+end
+
+Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
+shorts = client.entries(content_type: 'snippetShort').map { |snippet| [snippet.fields[:id], snippet.fields[:content]] }
+longs = client.entries(content_type: 'snippetLong').map { |snippet| [snippet.fields[:id], snippet.fields[:content]] }
+snippets = (shorts + longs).to_h
+File.open("#{DATA_DIR}/snippets.yml", "w") do |file|
+    file.write(snippets.to_yaml)
 end
