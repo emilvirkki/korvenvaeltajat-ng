@@ -14,10 +14,10 @@ nav:
 
     <div class="c-intro">
         <div class="c-intro__content">
-            {{ site.data.snippets.frontPageIntro|markdown }}
+            {{ site.data.snippets.frontPageIntro|markdownify }}
         </div>
         <div class="c-intro__cta">
-            <a href="{{ path('join') }}" class="c-button">Liity mukaan!</a>
+            <a href="/liity" class="c-button">Liity mukaan!</a>
         </div>
     </div>
 
@@ -26,10 +26,11 @@ nav:
         <section class="c-section v-inverse c-grid-container__second">
             <h2>Tapahtumat</h2>
 
-            {% if events %}
-                {% include 'partials/event_list.html.twig' %}
+            {% assign events = site.events | where: "show_on_front_page", true | sort: "datetime_start" | reverse %}
+            {% if events.size > 0 %}
+                {% include event_list.html %}
                 <div class="c-section__actions">
-                    <a href="{{ path('events') }}" class="c-button">Kaikki tapahtumat</a>
+                    <a href="/tapahtumat" class="c-button">Kaikki tapahtumat</a>
                 </div>
             {% else %}
                 <div class="c-panel v-centered v-empty">
@@ -45,7 +46,7 @@ nav:
             {% include article_list.html articles=articles limit=3 %}
 
             <div class="c-section__actions">
-                <a href="{{ path('articles') }}" class="c-button">Näytä lisää</a>
+                <a href="/ajankohtaista" class="c-button">Näytä lisää</a>
             </div>
         </section>
 

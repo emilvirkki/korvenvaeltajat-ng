@@ -1,0 +1,27 @@
+<div class="c-event-list">
+	<ul>
+	{% for event in events %}
+		<li class="c-event">
+			<span class="c-event__dates">
+				{% include date.html date=event.datetime_start %}
+				{% if event.datetime_end != event.datetime_start %}
+					–
+					{% include date.html date=event.datetime_end %}
+				{% endif %}
+			</span>
+			<h3 class="c-event__title">{{ event.title }}</h3>
+			{% if event.registration_link or event.content %}
+				<div class="c-event__actions">
+					{% if event.registration_link %}
+						<a href="{{ event.registration_link }}" class="c-button v-small">Ilmoittaudu</a>
+					{% endif %}
+					<!-- FIXME empty check doesn't work -->
+					{% if event.content | strip != '' %}
+						<a href="{{ event.url }}" class="c-link-button v-small">Lisätiedot</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+</div>
