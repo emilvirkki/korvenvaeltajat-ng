@@ -1,0 +1,12 @@
+{% if include.attachments.size > 0 %}
+	<div class="c-attachments">
+		<h2>Liitteet</h2>
+		<ul>
+		{% for attachment in include.attachments %}
+			<li>
+				<a href="{{ attachment.url }}" type="{{ attachment.content_type }}">{{ attachment.title }}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+{% endif %}
