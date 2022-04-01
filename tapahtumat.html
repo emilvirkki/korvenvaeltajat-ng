@@ -1,0 +1,26 @@
+---
+layout: default
+title: Tapahtumat
+body_variant: v-colored
+nav:
+  include: false
+---
+{% include navigation.html %}
+<main id="content">
+    <div class="c-text-header">
+        <h1>Tapahtumat</h1>
+    </div>
+    {% assign events = site.events | where: "show_on_front_page", true | sort: "datetime_start" | reverse %}
+    {% if events.size > 0 %}
+        <div class="c-grid-container v-grid-1col-narrow">
+            {% include event_list.html %}
+        </div>
+    {% else %}
+        <div class="c-intro v-bind-up">
+            <div class="c-intro__content">
+                Ei tapahtumia lähiaikoina.
+            </div>
+        </div>
+    {% endif %}
+</main>
+{% include footer.html %}
