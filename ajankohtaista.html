@@ -1,0 +1,18 @@
+---
+layout: default
+title: Ajankohtaista
+body_variant: v-colored
+nav:
+  include: false
+---
+{% include navigation.html %}
+<main id="content">
+	<div class="c-text-header">
+		<h1>Ajankohtaista</h1>
+	</div>
+	<div class="c-grid-container v-grid-1col-narrow">
+		{% assign articles = site.articles | sort: "created" | reverse %}
+		{% include article_list.html articles=articles %}
+	</div>
+</main>
+{% include footer.html %}
