@@ -29,6 +29,11 @@ def assets_to_hash(assets)
     end
 end
 
+def show_on_front_page?(event)
+    start_date = DateTime.parse(event.datetime_start)
+    start_date > DateTime.now
+end
+
 client = Contentful::Client.new(
   space: ENV['CONTENTFUL_SPACE'],
   access_token: ENV['CONTENTFUL_TOKEN']
@@ -45,6 +50,7 @@ client.entries(content_type: 'event').each do |event|
         "registration_link" => event.fields[:registration_link],
         "attachments" => assets_to_hash(event.fields[:attachments]),
         "kuksa_id" => event.fields[:kuksa_id],
+        "show_on_front_page" => show_on_front_page?(event),
     }
     content = event.fields[:content]
     write_entry("#{EVENTS_DIR}/#{event.fields[:slug]}.md", front_matter, content)
