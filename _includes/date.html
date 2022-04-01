@@ -1,6 +1,6 @@
-{% if include.withTime == true %}
- 	{% assign format = '%e.%m.%Y %k:%M' %}
+{% if include.with_time == true %}
+ 	{% assign format = '%e.%-m.%Y %k:%M' %}
 {% else %}
-	{% assign format = '%e.%m.%Y' %}
+	{% assign format = '%e.%-m.%Y' %}
 {% endif %}
 <time datetime="{{ include.date | date: '%F' }}">{{ include.date | date: format }}</time>

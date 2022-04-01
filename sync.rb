@@ -51,6 +51,7 @@ client.entries(content_type: 'event').each do |event|
         "attachments" => assets_to_hash(event.fields[:attachments]),
         "kuksa_id" => event.fields[:kuksa_id],
         "show_on_front_page" => show_on_front_page?(event),
+        "layout" => "event",
     }
     content = event.fields[:content]
     write_entry("#{EVENTS_DIR}/#{event.fields[:slug]}.md", front_matter, content)
