@@ -3,6 +3,7 @@ permalink: /:slug
 collections:
   articles:
     output: true
+    permalink: /ajankohtaista/:path
   events:
     output: true
     permalink: /tapahtumat/:path

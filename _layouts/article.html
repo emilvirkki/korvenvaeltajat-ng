@@ -1,0 +1,23 @@
+---
+layout: default
+---
+{% include navigation.html %}
+<main id="content">
+	<div class="c-text-header">
+		<h1>{{ page.title }}</h1>
+	</div>
+
+	<span class="c-meta">
+		{% if page.author_name %}
+			{{ page.author_name }}
+		{% endif %}
+		{% include date.html date=page.created %}
+	</span>
+
+	<div class="c-bodytext">
+		{{ page.content|markdownify }}
+
+		{% include attachments.html attachments=page.attachments %}
+	</div>
+</main>
+{% include footer.html variant='v-colored' %}

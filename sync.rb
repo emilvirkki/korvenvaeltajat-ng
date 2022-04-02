@@ -66,6 +66,7 @@ client.entries(content_type: 'article').each do |article|
         "author_name" => article.fields[:author_name],
         "created" => article.fields[:created_override] || article.created_at.to_s,
         "attachments" => assets_to_hash(article.fields[:attachments]),
+        "layout" => "article",
     }
     content = article.fields[:content]
     write_entry("#{ARTICLES_DIR}/#{article.fields[:slug]}.md", front_matter, content)
