@@ -10,13 +10,13 @@
 				{% endif %}
 			</span>
 			<h3 class="c-event__title">{{ event.title }}</h3>
-			{% if event.registration_link or event.content %}
+			{% assign event_content = event.content|strip %}
+			{% if event.registration_link || event_content != '' %}
 				<div class="c-event__actions">
 					{% if event.registration_link %}
 						<a href="{{ event.registration_link }}" class="c-button v-small">Ilmoittaudu</a>
 					{% endif %}
-					<!-- FIXME empty check doesn't work -->
-					{% if event.content | strip != '' %}
+					{% if event_content != '' %}
 						<a href="{{ event.url }}" class="c-link-button v-small">Lisätiedot</a>
 					{% endif %}
 				</div>
