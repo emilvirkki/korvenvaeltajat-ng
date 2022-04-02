@@ -1,7 +1,5 @@
 TODO
 
-- article pages
-- info page
 - contact page
 - join page
 - find instances of path(...) and replace them with just the url
