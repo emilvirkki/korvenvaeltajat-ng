@@ -1,5 +1,8 @@
 name: If branch is master and build succeeds, deploy to production
-on: push
+on:
+  push:
+  repository_dispatch:
+    types: [content-updated]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
