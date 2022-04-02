@@ -1,0 +1,19 @@
+---
+layout: default
+title: Mikä partio?
+nav:
+  include: false
+---
+{% include navigation.html %}
+<main id="content">
+	<div class="c-text-header">
+		<h1>Mikä partio?</h1>
+	</div>
+	<div class="c-bodytext">
+		{{ site.data.snippets.whatScouting|markdownify }}
+	</div>
+	<div class="c-cta">
+		<a href="{{ path('join') }}" class="c-button">Tule mukaan!</a>
+	</div>
+</main>
+{% include footer.html variant='v-colored' %}
