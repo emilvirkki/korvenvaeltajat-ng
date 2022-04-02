@@ -1,7 +1,7 @@
 name: If branch is master and build succeeds, deploy to production
 on: push
 jobs:
-  test-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
