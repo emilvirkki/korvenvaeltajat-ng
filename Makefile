@@ -1,5 +1,8 @@
 build: clean
 	bundle exec jekyll build
+sync:
+	test -f .env && source .env
+	ruby sync.rb
 clean:
 	rm -r _events
 	rm -r _articles
