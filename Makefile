@@ -4,9 +4,9 @@ sync:
 	test -f .env && source .env
 	ruby sync.rb
 clean:
-	rm -r _events
-	rm -r _articles
-	rm _data/snippets.yml
+	rm -rf _events
+	rm -rf _articles
+	rm -f _data/snippets.yml
 	bundle exec jekyll clean
 serve:
 	bundle exec jekyll serve --livereload --trace
