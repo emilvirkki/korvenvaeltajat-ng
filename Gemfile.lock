@@ -84,7 +84,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  contentful
+  contentful (~> 2.16)
   jekyll (~> 4.1)
 
 RUBY VERSION
