@@ -1,4 +1,1 @@
-TODO
-
-- CD pipeline
-- Run link checker in production
+Partiolippukunta Korven Vaeltajien nettisivut.
