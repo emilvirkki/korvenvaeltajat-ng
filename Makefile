@@ -1,4 +1,4 @@
-build: clean
+build: clean sync
 	bundle exec jekyll build
 sync:
 	test -f .env && source .env
