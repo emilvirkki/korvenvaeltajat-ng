@@ -1,12 +1,22 @@
 TODO
 
-- finalise front page adding
-- implement article pages
-- implement other views/pages
+- article pages
+- info page
+- contact page
+- join page
 - find instances of path(...) and replace them with just the url
+- find instances of broken snippets "{{ snippets."
+- fix FIXMEs / TODOs
+- testing
 - CD pipeline
 
-Testing:
+Testing: compare to production
 
-- event with attachments
-- event with / without content
+- nav pages
+- article page
+  - with images
+  - with attachments
+- event
+  - with attachments
+  - with / without content
+  - that should show up
