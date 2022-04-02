@@ -8,5 +8,41 @@ nav:
   weight: 7
   custom_class: c-button
 ---
+{% include navigation.html %}
+<main id="content">
+  <div class="c-text-header">
+    <h1>{{ site.data.snippets.joinHeading }}</h1>
+  </div>
 
-Yht. tiedot. {{ site.title }}
+  <div class="c-intro v-bind-up">
+    <div class="c-intro__content">
+      {{ site.data.snippets.joinIntroShort }}
+    </div>
+    <div class="c-intro__secondary">
+      {{ site.data.snippets.joinIntroLong|markdownify }}
+    </div>
+  </div>
+
+  <div class="c-grid-container v-grid-2col-even v-bg-dark">
+    <div class="c-panel v-centered">
+      <h2>Lapset</h2>
+      <div class="c-panel__content">
+        {{ site.data.snippets.joinKids|markdownify }}
+      </div>
+      <div class="c-panel__actions">
+        <a href="https://kuksa.partio.fi/kotisivut/jasenhakemus.aspx?id=9999426" class="c-button">Ilmoittaudu mukaan</a>
+      </div>
+    </div>
+
+    <div class="c-panel v-centered">
+      <h2>Aikuiset</h2>
+      <div class="c-panel__content">
+        {{ site.data.snippets.joinAdults|markdownify }}
+      </div>
+      <div class="c-panel__actions">
+        <a href="https://kuksa.partio.fi/kotisivut/jasenhakemus.aspx?id=9999426" class="c-button">Ilmoittaudu mukaan</a>
+      </div>
+    </div>
+  </div>
+</main>
+{% include footer.html %}

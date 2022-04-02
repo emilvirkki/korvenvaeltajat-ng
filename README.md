@@ -1,7 +1,5 @@
 TODO
 
-- contact page
-- join page
 - find instances of path(...) and replace them with just the url
 - find instances of broken snippets "{{ snippets."
 - fix FIXMEs / TODOs
