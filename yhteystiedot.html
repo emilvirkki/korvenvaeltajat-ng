@@ -6,5 +6,35 @@ nav:
   title: Yhteystiedot
   weight: 5
 ---
+{% include navigation.html %}
+	<main id="content">
+		<div class="c-text-header v-bottom-space">
+			<h1>Yhteystiedot</h1>
+		</div>
 
-Yht. tiedot. {{ site.title }}
+		<div class="c-grid-container v-grid-2col-even">
+			<div class="c-section v-full-content">
+				{{ site.data.snippets.contactChairman|markdownify }}
+			</div>
+			<div class="c-section v-full-content">
+				{{ site.data.snippets.contactRegisterAdmin|markdownify }}
+			</div>
+		</div>
+
+		<div class="c-grid-container v-grid-2col-even v-bg-light">
+			<div class="c-section v-full-content">
+				{{ site.data.snippets.visitingAddress|markdownify }}
+			</div>
+			<div class="c-section v-full-content">
+				{{ site.data.snippets.mailingAddress|markdownify }}
+			</div>
+		</div>
+
+		<div class="c-grid-container v-grid-1col-narrow">
+			<div class="c-section v-full-content">
+				{{ site.data.snippets.contactTreasurer|markdownify }}
+			</div>
+		</div>
+
+	</main>
+{% include footer.html variant='v-colored' %}
