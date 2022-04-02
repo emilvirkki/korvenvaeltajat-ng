@@ -6,5 +6,52 @@ nav:
   title: Lippukunta
   weight: 3
 ---
+{% include navigation.html %}
+<main id="content">
+	<section>
+		<div class="c-text-header">
+			<h1>Lippukunta</h1>
+		</div>
 
-Lpk {{ site.title }}
+		<div class="c-intro v-bind-down">
+			<div class="c-intro__content">
+				{{ site.data.snippets.troopIntro|markdownify }}
+			</div>
+		</div>
+
+		<div class="c-bodytext">
+			{{ site.data.snippets.troopGeneral|markdownify }}
+		</div>
+	</section>
+
+	<section class="c-grid-container v-intro-2col v-bg-dark">
+		<div class="c-section-header v-inverse">
+			<h2>Täällä toimimme</h2>
+			{{ site.data.snippets.troopLocationsIntro|markdownify }}
+		</div>
+		<div class="c-panel v-image">
+			<img src="/assets/images/kolo-2x.jpg" alt="">
+			<h3>Kolo</h3>
+			<div class="c-panel__content">{{ site.data.snippets.troopMeetingPlace|markdownify }}</div>
+			<div class="c-panel__actions">
+				<a href="https://maps.google.fi/maps/ms?msid=201785234211755333661.0004600d34eb543fc666b&msa=0" class="c-button">Näytä kartalla</a>
+			</div>
+		</div>
+		<div class="c-panel v-image">
+			<img src="/assets/images/kamppa-2x.jpg" alt="">
+			<h3>Kämppä</h3>
+			<div class="c-panel__content">{{ site.data.snippets.troopCabin|markdownify }}</div>
+		</div>
+	</section>
+
+	<div class="c-grid-container v-grid-1col-narrow v-bg-light">
+		<div class="c-section-header">
+			<h2>Historiaa</h2>
+		</div>
+		<div class="c-section v-full-content">
+			{{ site.data.snippets.troopHistory|markdownify }}
+		</div>
+	</div>
+
+</main>
+{% include footer.html %}
