@@ -1,7 +1,7 @@
 build: clean sync
 	bundle exec jekyll build
 sync:
-	test -f .env && source .env
+	test -f .env && source .env || echo "No env file found"
 	ruby sync.rb
 clean:
 	rm -rf _events
