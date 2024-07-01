@@ -12,34 +12,34 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-    - name: Use Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '2.7.2'
-        bundler-cache: true
-    - name: Install deps
-      run: make install
-    - name: Build the site
-      env:
-        CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
-        CONTENTFUL_TOKEN: ${{ secrets.CONTENTFUL_TOKEN }}
-        CONTENTFUL_ENV: ${{ secrets.CONTENTFUL_ENV }}
-      run: make build
-    - name: Deploy with rsync (if the branch is master)
-      if: ${{ github.ref == 'refs/heads/master' }}
-      uses: burnett01/rsync-deployments@4.1
-      with:
-        switches: -avzr --delete
-        path: _site/
-        remote_path: /var/www/korvenvaeltajat.net/htdocs
-        remote_host: ${{ secrets.DEPLOY_HOST }}
-        remote_port: ${{ secrets.DEPLOY_PORT }}
-        remote_user: ${{ secrets.DEPLOY_USER }}
-        remote_key: ${{ secrets.DEPLOY_KEY }}
-    - name: Verify success (if the branch is master)
-      if: ${{ github.ref == 'refs/heads/master' }}
-      run: |
-        curl --fail https://korvenvaeltajat.net/ > /dev/null
-        curl --fail https://korvenvaeltajat.net/assets/css/main.css > /dev/null
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Use Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.7.2"
+          bundler-cache: true
+      - name: Install deps
+        run: make install
+      - name: Build the site
+        env:
+          CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
+          CONTENTFUL_TOKEN: ${{ secrets.CONTENTFUL_TOKEN }}
+          CONTENTFUL_ENV: ${{ secrets.CONTENTFUL_ENV }}
+        run: make build
+      - name: Deploy with rsync (if the branch is master)
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: burnett01/rsync-deployments@4.1
+        with:
+          switches: -avzr --delete
+          path: _site/
+          remote_path: /var/www/korvenvaeltajat.net/html
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_port: ${{ secrets.DEPLOY_PORT }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.DEPLOY_KEY }}
+      - name: Verify success (if the branch is master)
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: |
+          curl --fail https://korvenvaeltajat.net/ > /dev/null
+          curl --fail https://korvenvaeltajat.net/assets/css/main.css > /dev/null
